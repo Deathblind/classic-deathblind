@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "class-name": true,
+    "no-consecutive-blank-lines": false,
+    "quotemark": [true, "double", "avoid-escape"],
+    "indent": [true, "spaces"]
+  }
+}

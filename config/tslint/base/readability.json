@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "member-access": true,
+    "curly": true,
+    "no-trailing-whitespace": true,
+    "no-unnecessary-initializer": true,
+    "no-unused-expression": true,
+    "no-conditional-assignment": true,
+    "no-angle-bracket-type-assertion": true,
+    "no-inferrable-types": [true, "ignore-params"],
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-finally",
+      "check-whitespace"
+    ],
+    "prefer-object-spread": true,
+    "array-type": [true, "array"],
+    "newline-before-return": true,
+    "one-variable-per-declaration": [true, "ignore-for-loop"]
+  }
+}

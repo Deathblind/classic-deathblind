@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "./base/failsafe.json",
+    "./base/readability.json",
+    "./base/styleguide.json",
+    "./base/hacks.json"
+  ],
+  "rules": {
+    "no-require-imports": false,
+    "no-any": false,
+
+    // Security
+    "no-eval": true,
+
+    // Legacy
+    "no-internal-module": true,
+    "no-reference": true
+  }
+}

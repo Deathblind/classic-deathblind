@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "no-arg": true,
+    "no-construct": true,
+    "no-constructor-vars": false
+  }
+}

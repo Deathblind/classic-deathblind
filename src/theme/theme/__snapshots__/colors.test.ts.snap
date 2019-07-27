@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`primaryBackground matches dark snapshot: hsl(211, 0%, 16%) 1`] = `"hsl(211, 0%, 16%)"`;
+
+exports[`primaryForeground matches dark snapshot: hsl(211, 0%, 16%) 1`] = `"hsl(211, 0%, 16%)"`;

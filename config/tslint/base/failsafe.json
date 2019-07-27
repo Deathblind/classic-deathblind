@@ -1,0 +1,15 @@
+{
+  "rules": {
+    "no-var-keyword": true,
+    "no-duplicate-variable": true,
+    "no-shadowed-variable": true,
+    "no-invalid-this": true,
+    "no-misused-new": true,
+    "no-bitwise": true,
+    "prefer-const": true,
+    "triple-equals": [true, "allow-null-check", "allow-undefined-check"],
+    "no-switch-case-fall-through": true,
+    "semicolon": [true, "always"],
+    "use-isnan": true
+  }
+}

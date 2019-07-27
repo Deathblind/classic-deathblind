@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bodyFontSize matches desktop snapshot 1`] = `undefined`;
+
+exports[`bodyFontSize matches mobile snapshot 1`] = `undefined`;
+
+exports[`bodyFontSize matches tablet snapshot 1`] = `undefined`;
+
+exports[`bodyLineHeight matches desktop snapshot 1`] = `undefined`;
+
+exports[`bodyLineHeight matches mobile snapshot 1`] = `undefined`;
+
+exports[`bodyLineHeight matches tablet snapshot 1`] = `undefined`;
+
+exports[`h1FontSize matches desktop snapshot 1`] = `undefined`;
+
+exports[`h1FontSize matches mobile snapshot 1`] = `undefined`;
+
+exports[`h1FontSize matches tablet snapshot 1`] = `undefined`;
+
+exports[`h1LineHeight matches desktop snapshot 1`] = `undefined`;
+
+exports[`h1LineHeight matches mobile snapshot 1`] = `undefined`;
+
+exports[`h1LineHeight matches tablet snapshot 1`] = `undefined`;
+
+exports[`h2FontSize matches desktop snapshot 1`] = `undefined`;
+
+exports[`h2FontSize matches mobile snapshot 1`] = `undefined`;
+
+exports[`h2FontSize matches tablet snapshot 1`] = `undefined`;
+
+exports[`h2LineHeight matches desktop snapshot 1`] = `undefined`;
+
+exports[`h2LineHeight matches mobile snapshot 1`] = `undefined`;
+
+exports[`h2LineHeight matches tablet snapshot 1`] = `undefined`;
+
+exports[`h3FontSize matches desktop snapshot 1`] = `undefined`;
+
+exports[`h3FontSize matches mobile snapshot 1`] = `undefined`;
+
+exports[`h3FontSize matches tablet snapshot 1`] = `undefined`;
+
+exports[`h3LineHeight matches desktop snapshot 1`] = `undefined`;
+
+exports[`h3LineHeight matches mobile snapshot 1`] = `undefined`;
+
+exports[`h3LineHeight matches tablet snapshot 1`] = `undefined`;
+
+exports[`h4FontSize matches desktop snapshot 1`] = `undefined`;
+
+exports[`h4FontSize matches mobile snapshot 1`] = `undefined`;
+
+exports[`h4FontSize matches tablet snapshot 1`] = `undefined`;
+
+exports[`h4LineHeight matches desktop snapshot 1`] = `undefined`;
+
+exports[`h4LineHeight matches mobile snapshot 1`] = `undefined`;
+
+exports[`h4LineHeight matches tablet snapshot 1`] = `undefined`;
+
+exports[`h5FontSize matches desktop snapshot 1`] = `undefined`;
+
+exports[`h5FontSize matches mobile snapshot 1`] = `undefined`;
+
+exports[`h5FontSize matches tablet snapshot 1`] = `undefined`;
+
+exports[`h5LineHeight matches desktop snapshot 1`] = `undefined`;
+
+exports[`h5LineHeight matches mobile snapshot 1`] = `undefined`;
+
+exports[`h5LineHeight matches tablet snapshot 1`] = `undefined`;
+
+exports[`h6FontSize matches desktop snapshot 1`] = `undefined`;
+
+exports[`h6FontSize matches mobile snapshot 1`] = `undefined`;
+
+exports[`h6FontSize matches tablet snapshot 1`] = `undefined`;
+
+exports[`h6LineHeight matches desktop snapshot 1`] = `undefined`;
+
+exports[`h6LineHeight matches mobile snapshot 1`] = `undefined`;
+
+exports[`h6LineHeight matches tablet snapshot 1`] = `undefined`;

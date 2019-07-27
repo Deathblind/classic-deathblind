@@ -1,0 +1,26 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+html:dir(rtl) {
+  direction: rtl;
+}
+
+* {
+  direction: inherit;
+}
+
+*::before,
+*::after {
+  direction: inherit;
+}
+
+body {
+  margin: 0;
+}
