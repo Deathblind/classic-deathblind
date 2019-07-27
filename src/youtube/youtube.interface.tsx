@@ -4,7 +4,7 @@ export interface YoutubeUploads {
     nextPageToken: string;
     regionCode: string;
     pageInfo: PageInfo;
-    items: ItemsItem[];
+    items: Item[];
 }
 
 export interface PageInfo {
@@ -12,7 +12,7 @@ export interface PageInfo {
     resultsPerPage: number;
 }
 
-export interface ItemsItem {
+export interface Item {
     kind: string;
     etag: string;
     id: Id;
@@ -35,22 +35,12 @@ export interface Snippet {
 }
 
 export interface Thumbnails {
-    "default": {
-        url: string;
-        width: number;
-        height: number;
-    };
-    medium: Medium;
-    high: High;
+    default: Thumbnail;
+    medium: Thumbnail;
+    high: Thumbnail;
 }
 
-export interface Medium {
-    url: string;
-    width: number;
-    height: number;
-}
-
-export interface High {
+export interface Thumbnail {
     url: string;
     width: number;
     height: number;

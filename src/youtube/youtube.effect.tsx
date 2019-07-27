@@ -1,16 +1,24 @@
-import {Epic, ofType, combineEpics} from "redux-observable";
-import {Observable} from "rxjs";
-import {Action} from "redux";
-import {switchMap, map} from "rxjs/operators";
-import {fetchYoutubeVideos} from "./youtube.http";
-import {loadVideos, loadVideosComplete} from "./youtube.action";
+import { Epic, ofType, combineEpics } from "redux-observable";
+import { Observable } from "rxjs";
+import { Action } from "redux";
+import { switchMap, map } from "rxjs/operators";
+import { fetchYoutubeVideos } from "./youtube.http";
+import { loadVideos, loadVideosComplete } from "./youtube.action";
+import { sortVideosByDate } from "./youtube.sort";
 
-const loadAuthorsEpic: Epic = (action$: Observable<Action>) => action$.pipe(
-    ofType(loadVideos),
-    switchMap(fetchYoutubeVideos),
-    map(authors => loadVideosComplete({
-        data: authors
-    })),
-);
+const loadYoutubeEpic: Epic = (action$: Observable<Action>) =>
+    action$.pipe(
+        ofType(loadVideos),
+        switchMap(fetchYoutubeVideos),
+        map(videos => ({
+            ...videos,
+            items: sortVideosByDate(videos.items)
+        })),
+        map(videos =>
+            loadVideosComplete({
+                data: videos
+            })
+        )
+    );
 
-export const authorsEpic = combineEpics(loadAuthorsEpic);
+export const youtubeEpic = combineEpics(loadYoutubeEpic);
