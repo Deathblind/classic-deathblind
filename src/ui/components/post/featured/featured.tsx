@@ -1,9 +1,10 @@
-import {styled} from "../../../../theme/util/helpers";
-import React, {memo, SFC} from "react";
-import {defaultPadding} from "../../../../theme/theme/sizes";
+import { styled } from "../../../../theme/util/helpers";
+import React, { memo, SFC } from "react";
+import { defaultPadding } from "../../../../theme/theme/sizes";
 import CoveredImage from "../../covered-image/covered-image";
-import {h3, h5} from "../../../util/heading/heading";
-import {smallBodyFontSize} from "../../../../theme/theme/font-sizes";
+import { h3, h5 } from "../../../util/heading/heading";
+import { smallBodyFontSize } from "../../../../theme/theme/font-sizes";
+import { primarySaturatedForeground } from "../../../../theme/theme/colors";
 
 export interface FeaturedProps {
     image: string;
@@ -33,20 +34,32 @@ export const StyledTitle = styled.div`
 
 export const StyledAuthor = styled.div`
     ${h5}
+    color: ${primarySaturatedForeground};
 `;
 
 export const StyledExcerp = styled.p`
     font-size: ${smallBodyFontSize};
 `;
 
-export const Featured: SFC<FeaturedProps> = memo(props => <StyledFeatured {...props}>
-    <CoveredImage src={props.image} alt={props.imageAlt} title={props.title} />
+export const Featured: SFC<FeaturedProps> = memo(props => (
+    <StyledFeatured {...props}>
+        <CoveredImage
+            src={props.image}
+            alt={props.imageAlt}
+            title={props.title}
+        />
 
-    <div>
-        <StyledTitle role="heading" dangerouslySetInnerHTML={{__html: props.title}}></StyledTitle>
-        <StyledAuthor>by { props.author }</StyledAuthor>
-        <StyledExcerp dangerouslySetInnerHTML={{__html: props.excerp}}></StyledExcerp>
-    </div>
-</StyledFeatured>);
+        <div>
+            <StyledTitle
+                role="heading"
+                dangerouslySetInnerHTML={{ __html: props.title }}
+            ></StyledTitle>
+            <StyledAuthor>by {props.author}</StyledAuthor>
+            <StyledExcerp
+                dangerouslySetInnerHTML={{ __html: props.excerp }}
+            ></StyledExcerp>
+        </div>
+    </StyledFeatured>
+));
 
 export default Featured;

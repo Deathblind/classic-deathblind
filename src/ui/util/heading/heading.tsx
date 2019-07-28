@@ -12,14 +12,16 @@ import {
     h6FontSize,
     h6LineHeight
 } from "../../../theme/theme/font-sizes";
-import {stylishFont} from "../../../theme/theme/font-families";
-import {css} from "../../../theme/util/helpers";
+import { stylishFont } from "../../../theme/theme/font-families";
+import { css } from "../../../theme/util/helpers";
+import { primaryHeadingForeground } from "../../../theme/theme/colors";
 
 export const h1 = css`
     font-size: ${h1FontSize};
     line-height: ${h1LineHeight};
     font-family: ${stylishFont};
     font-weight: 400;
+    color: ${primaryHeadingForeground};
 `;
 
 export const h2 = css`
@@ -27,6 +29,7 @@ export const h2 = css`
     line-height: ${h2LineHeight};
     font-family: ${stylishFont};
     font-weight: 400;
+    color: ${primaryHeadingForeground};
 `;
 
 export const h3 = css`
@@ -34,6 +37,7 @@ export const h3 = css`
     line-height: ${h3LineHeight};
     font-family: ${stylishFont};
     font-weight: 400;
+    color: ${primaryHeadingForeground};
 `;
 
 export const h4 = css`
@@ -41,6 +45,7 @@ export const h4 = css`
     line-height: ${h4LineHeight};
     font-family: ${stylishFont};
     font-weight: 400;
+    color: ${primaryHeadingForeground};
 `;
 
 export const h5 = css`
@@ -48,6 +53,7 @@ export const h5 = css`
     line-height: ${h5LineHeight};
     font-family: ${stylishFont};
     font-weight: 400;
+    color: ${primaryHeadingForeground};
 `;
 
 export const h6 = css`
@@ -55,4 +61,5 @@ export const h6 = css`
     line-height: ${h6LineHeight};
     font-family: ${stylishFont};
     font-weight: 400;
+    color: ${primaryHeadingForeground};
 `;

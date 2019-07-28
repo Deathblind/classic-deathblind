@@ -1,7 +1,5 @@
 import Home from "./pages/home/home";
-import About from "./pages/about/about";
-import PrivacyPolicy from "./pages/privacy-policy/privacy-policy";
-import TermsOfUse from "./pages/terms-of-use/terms-of-use";
+import Post from "./pages/post/post";
 
 export const routes = [
     {
@@ -9,16 +7,8 @@ export const routes = [
         component: Home
     },
     {
-        path: "/about",
-        component: About
-    },
-    {
-        path: "/privacy-policy",
-        component: PrivacyPolicy
-    },
-    {
-        path: "/terms-of-use",
-        component: TermsOfUse
+        path: "/post/:postId",
+        component: Post
     }
 ];
 

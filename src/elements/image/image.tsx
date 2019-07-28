@@ -1,4 +1,4 @@
-import {styled} from "../../theme/util/helpers";
+import { styled } from "../../theme/util/helpers";
 
 export interface LazyAccessibleImage {
     loading?: "lazy" | null;
@@ -8,6 +8,7 @@ export interface LazyAccessibleImage {
 
 export const Image = styled.img<LazyAccessibleImage>`
     max-width: 100%;
+    vertical-align: middle;
 `;
 
 export default Image;

@@ -1,3 +1,4 @@
+import "./global.css";
 import React from "react";
 import { render, hydrate } from "react-dom";
 import * as serviceWorker from "./serviceWorker";
@@ -13,9 +14,7 @@ import { translations } from "./translations";
 import Theme from "./theme/theme/index";
 import GlobalStyles from "./styles/styles";
 
-import "./global.css";
-
-const state: Partial<RootState> = {...window["__STATE__"]};
+const state: Partial<RootState> = { ...window["__STATE__"] };
 delete window["__STATE__"];
 
 const store = configureStore(state);

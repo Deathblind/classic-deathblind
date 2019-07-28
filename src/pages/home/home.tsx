@@ -1,10 +1,9 @@
 import React, { SFC, memo, useEffect, useState } from "react";
-import { OverlappingHeader } from "../../layout/header/header";
 import Container from "../../ui/components/container/container";
 import highlightBoxShadow from "../../ui/util/highlight-box-shadow/highlight-box-shadow";
 import { styled } from "../../theme/util/helpers";
 import Ratio from "../../ui/components/ratio/ratio";
-import { defaultBorderRadius } from "../../theme/theme/sizes";
+import { bigBorderRadius } from "../../theme/theme/sizes";
 import LatestVideos from "./latest-videos/latest-videos";
 import LatestPosts from "./latest-posts/latest-posts";
 import { connect } from "react-redux";
@@ -24,7 +23,7 @@ const StyledVideoContainer = styled(Container)`
 
 const StyledIframe = styled.iframe`
     ${highlightBoxShadow};
-    border-radius: ${defaultBorderRadius};
+    border-radius: ${bigBorderRadius};
 `;
 
 export interface HomeProps {
@@ -43,22 +42,20 @@ export const Home: SFC<HomeProps> = memo(({ loadData, posts, videos }) => {
 
     useEffect(() => {
         setLatestPosts(posts ? posts.slice(0, 5) : []);
-        setLatestVideos(videos ? videos.slice(0, 5) : []);
+        setLatestVideos(videos ? videos.slice(0, 4) : []);
     }, [posts, videos]);
 
     return (
         <>
             <StyledVideoContainer>
-                <OverlappingHeader>
-                    <Ratio antecedent={16} consequent={9}>
-                        <StyledIframe
-                            src="https://player.twitch.tv/?channel=hydramist"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></StyledIframe>
-                    </Ratio>
-                </OverlappingHeader>
+                <Ratio antecedent={16} consequent={9}>
+                    <StyledIframe
+                        src="https://player.twitch.tv/?channel=hydramist"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></StyledIframe>
+                </Ratio>
             </StyledVideoContainer>
 
             <Container>

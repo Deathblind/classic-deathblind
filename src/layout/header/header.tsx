@@ -1,13 +1,15 @@
-import React, {SFC, memo} from "react";
-import {styled, ThemeProps} from "../../theme/util/helpers";
+import React, { SFC, memo } from "react";
+import { styled, ThemeProps } from "../../theme/util/helpers";
 import coverParent from "../../ui/util/cover-parent/cover-parent";
 import useSize from "../../hooks/size/size";
 
-export const headerSize = ({ theme }: ThemeProps) => `calc(25vw)`;
+export const headerSize = ({ theme }: ThemeProps) => `25vw`;
+export const minHeaderSize = ({ theme }: ThemeProps) => `200px`;
 
 export const StyledHeader = styled.header`
     position: relative;
     height: ${headerSize};
+    min-height: ${minHeaderSize};
 `;
 
 export const StyledHeroImage = styled.div<{ image: string }>`
@@ -33,25 +35,21 @@ export const StyledAboveHeroImage = styled.div`
 `;
 
 export const OverlappingHeader: SFC = memo(({ children }) => {
-    const [sized, {height}] = useSize(
-        () => <div>
-            { children }
-        </div>
-    );
+    const [sized, { height }] = useSize(() => <div>{children}</div>);
 
-    return <div style={{marginTop: `${-height/3}px`}}>
-        { sized }
-    </div>;
+    return <div style={{ marginTop: `${-height / 2}px` }}>{sized}</div>;
 });
 
-export const Header: SFC = memo(({ children }) => <StyledHeader>
-    <StyledHeroImage
-        image={"http://www.deathblind.com/wp-content/uploads/2016/11/wallpaper-2850123.jpg"}
-    />
+export const Header: SFC = memo(({ children }) => (
+    <StyledHeader>
+        <StyledHeroImage
+            image={
+                "http://www.deathblind.com/wp-content/uploads/2016/11/wallpaper-2850123.jpg"
+            }
+        />
 
-    <StyledAboveHeroImage>
-        {children}
-    </StyledAboveHeroImage>
-</StyledHeader>);
+        <StyledAboveHeroImage>{children}</StyledAboveHeroImage>
+    </StyledHeader>
+));
 
 export default Header;
