@@ -28,6 +28,7 @@
     "styled-theming": "^2.2.0"
   },
   "scripts": {
+    "build": "react-app-rewired build",
     "start": "react-app-rewired start",
     "test": "react-app-rewired test --env=jsdom",
     "lint": "tslint --fix --project .",
