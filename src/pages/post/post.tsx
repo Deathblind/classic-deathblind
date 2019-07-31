@@ -142,6 +142,7 @@ export const StyledPostContent = styled.div`
 
     img {
         max-width: 100%;
+        max-height: 60%;
         position: sticky;
         top: ${defaultPadding};
         ${afloatBoxShadow};
@@ -218,18 +219,21 @@ const mapStateToProps = (
 
     return {
         content: post
-            ? post.content.rendered.replace(
-                  new RegExp("<li>", "g"),
-                  `<li>
+            ? post.content.rendered
+                  .replace(
+                      new RegExp("<li>", "g"),
+                      `<li>
                     <label>
                         <input type='checkbox'
                             onclick="this.checked && this.parentNode.parentNode.nextElementSibling
-                                ? this.parentNode.parentNode.nextElementSibling.scrollIntoView()
+                                ? this.parentNode.parentNode.nextElementSibling.scrollIntoView(false)
                                 : null"
                         />
                         <div></div>
-                    </label>`
-              )
+                    </label>
+                    <div>`
+                  )
+                  .replace(new RegExp("</li>", "g"), `</div></li>`)
             : null,
         title: post ? post.title.rendered : null,
         excerpt: post ? post.excerpt.rendered : null,
