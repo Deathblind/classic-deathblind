@@ -234,7 +234,6 @@ const mapStateToProps = (
                     <div>`
                   )
                   .replace(new RegExp("</li>", "g"), `</div></li>`)
-                  .replace(new RegExp("http", "g"), `https`)
             : null,
         title: post ? post.title.rendered : null,
         excerpt: post ? post.excerpt.rendered : null,
