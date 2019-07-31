@@ -44,7 +44,7 @@ export const Header: SFC = memo(({ children }) => (
     <StyledHeader>
         <StyledHeroImage
             image={
-                "http://www.deathblind.com/wp-content/uploads/2016/11/wallpaper-2850123.jpg"
+                "https://api.deathblind.com/wp-content/uploads/2016/11/wallpaper-2850123.jpg"
             }
         />
 

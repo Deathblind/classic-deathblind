@@ -49,7 +49,7 @@ const mapStateToFeaturedProps = (
 
     return {
         image:
-            "http://www.deathblind.com/wp-content/uploads/2017/06/WorldOfWarcraft_art36_1.jpg",
+            "https://api.deathblind.com/wp-content/uploads/2017/06/WorldOfWarcraft_art36_1.jpg",
         imageAlt: "",
         title: post ? post.title.rendered : "",
         excerp: post ? post.excerpt.rendered : "",
@@ -75,7 +75,7 @@ const mapStateToTileProps = (
 
     return {
         image:
-            "http://www.deathblind.com/wp-content/uploads/2018/11/Comp-1_00000.png",
+            "https://api.deathblind.com/wp-content/uploads/2018/11/Comp-1_00000.png",
         title: post ? post.title.rendered : "",
         author: author ? author.name : "",
         tags: [],

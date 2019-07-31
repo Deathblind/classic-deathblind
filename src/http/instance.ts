@@ -3,7 +3,7 @@ import { compose } from "redux";
 import { Observable } from "rxjs";
 
 export const http = axios.create({
-    baseURL: "http://www.deathblind.com/wp-json/wp/v2"
+    baseURL: "https://api.deathblind.com/wp-json/wp/v2"
 });
 
 const axiosToObservable = <T>(promise: AxiosPromise<T>): Observable<T> => {
