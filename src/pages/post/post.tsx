@@ -1,28 +1,29 @@
-import React, { SFC, memo, useEffect } from "react";
-import { styled, css } from "../../theme/util/helpers";
-import { connect } from "react-redux";
-import { Dispatch, Action } from "redux";
-import { RootState } from "../../store/root";
-import { loadPosts } from "../../wordpress/posts/posts.action";
-import { loadAuthors } from "../../wordpress/authors/authors.action";
-import { getPostById } from "../../wordpress/posts/posts.selector";
-import Checkmark from "../../icons/checkmark.svg";
-import { match } from "react-router";
-import { getAuthorById } from "../../wordpress/authors/authors.selector";
-import Container from "../../ui/components/container/container";
-import {
-    defaultPadding,
-    defaultBorderRadius,
-    defaultMargin
-} from "../../theme/theme/sizes";
-import {
-    primarySaturatedBackground,
-    pageBackground,
-    primaryAccentBackground
-} from "../../theme/theme/colors";
-import afloatBoxShadow from "../../ui/util/afloat-box-shadow/afloat-box-shadow";
-import { h4FontSize } from "../../theme/theme/font-sizes";
+import React, { memo, SFC, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { connect } from "react-redux";
+import { match } from "react-router";
+import { Action, Dispatch } from "redux";
+import Checkmark from "../../icons/checkmark.svg";
+import { RootState } from "../../store/root";
+import {
+    pageBackground,
+    primaryAccentBackground,
+    primarySaturatedBackground
+} from "../../theme/theme/colors";
+import { h4FontSize } from "../../theme/theme/font-sizes";
+import {
+    defaultBorderRadius,
+    defaultMargin,
+    defaultPadding
+} from "../../theme/theme/sizes";
+import { css, styled } from "../../theme/util/helpers";
+import Container from "../../ui/components/container/container";
+import afloatBoxShadow from "../../ui/util/afloat-box-shadow/afloat-box-shadow";
+import { decodeHTMLEntities } from "../../util/decode-html-entities";
+import { loadAuthors } from "../../wordpress/authors/authors.action";
+import { getAuthorById } from "../../wordpress/authors/authors.selector";
+import { loadPosts } from "../../wordpress/posts/posts.action";
+import { getPostById } from "../../wordpress/posts/posts.selector";
 
 const checkBoxStyling = css`
     label {
@@ -184,7 +185,9 @@ export const Post: SFC<PostProps> = memo(
         return (
             <>
                 <Helmet>
-                    {title && <title>{title} - Deathblind</title>}
+                    {title && (
+                        <title>{decodeHTMLEntities(title)} - Deathblind</title>
+                    )}
                     {excerpt && <meta name="description" content={excerpt!} />}
                 </Helmet>
 
