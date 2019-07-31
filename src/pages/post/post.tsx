@@ -184,7 +184,7 @@ export const Post: SFC<PostProps> = memo(
         return (
             <>
                 <Helmet>
-                    {title && <title>{title}</title>}
+                    {title && <title>{title} - Deathblind</title>}
                     {excerpt && <meta name="description" content={excerpt!} />}
                 </Helmet>
 

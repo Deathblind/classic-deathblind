@@ -15,6 +15,7 @@ import { Dispatch, Action } from "redux";
 import { loadVideos } from "../../youtube/youtube.action";
 import { getVideos } from "../../youtube/youtube.selector";
 import { Item } from "../../youtube/youtube.interface";
+import Helmet from "react-helmet";
 
 const StyledVideoContainer = styled(Container)`
     max-width: 50vw;
@@ -47,6 +48,10 @@ export const Home: SFC<HomeProps> = memo(({ loadData, posts, videos }) => {
 
     return (
         <>
+            <Helmet>
+                <title>Homepage - Deathblind</title>
+            </Helmet>
+
             <StyledVideoContainer>
                 <Ratio antecedent={16} consequent={9}>
                     <StyledIframe
