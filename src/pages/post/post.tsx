@@ -142,7 +142,7 @@ export const StyledPostContent = styled.div`
 
     img {
         max-width: 100%;
-        max-height: 60%;
+        max-height: 90vh;
         position: sticky;
         top: ${defaultPadding};
         ${afloatBoxShadow};
