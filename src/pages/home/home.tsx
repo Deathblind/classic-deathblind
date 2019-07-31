@@ -49,7 +49,7 @@ export const Home: SFC<HomeProps> = memo(({ loadData, posts, videos }) => {
     return (
         <>
             <Helmet>
-                <title>Homepage - Deathblind</title>
+                <title>Deathblind by Hydramist</title>
             </Helmet>
 
             <StyledVideoContainer>
