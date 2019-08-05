@@ -227,11 +227,7 @@ const mapStateToProps = (
                       new RegExp("<li>", "g"),
                       `<li>
                     <label>
-                        <input type='checkbox'
-                            onclick="this.checked && this.parentNode.parentNode.nextElementSibling
-                                ? this.parentNode.parentNode.nextElementSibling.scrollIntoView(false)
-                                : null"
-                        />
+                        <input type='checkbox' />
                         <div></div>
                     </label>
                     <div>`
