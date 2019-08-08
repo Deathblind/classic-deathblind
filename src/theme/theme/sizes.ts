@@ -21,4 +21,4 @@ export const insaneBorderRadius = ({ theme }: ThemeProps) => `12px`;
 
 // Width
 export const containerMaxWidth = ({ theme }: ThemeProps) =>
-    `${theme.gridSpan * 240}rem`;
+    `${theme.gridSpan * 280}rem`;
