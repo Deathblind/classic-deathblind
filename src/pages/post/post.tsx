@@ -73,10 +73,21 @@ const orderedListStyling = css`
             grid-column-gap: ${defaultPadding};
             align-items: center;
             position: relative;
+
             padding: ${defaultPadding};
             background-color: ${primarySaturatedBackground};
             border-radius: ${defaultBorderRadius};
             ${afloatBoxShadow};
+
+            ol {
+                grid-column: 1/-1;
+                margin-bottom: 0;
+                margin-top: ${defaultMargin};
+            }
+
+            li {
+                background-color: transparent;
+            }
 
             &:before {
                 content: counter(li);
