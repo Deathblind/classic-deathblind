@@ -42,15 +42,11 @@ declare global {
 
 const wowheadStyling = css`
     .wowhead {
-        color: ${npcForeground};
+        color: inherit;
     }
 
     .wowhead--quest {
         color: ${questForeground};
-    }
-
-    .wowhead--npc {
-        color: ${npcForeground};
     }
 `;
 
@@ -276,7 +272,7 @@ const mapStateToProps = (
         }
     }: ConnectedToPostProps
 ) => {
-    const post = getPostById(+postId || 719)(state);
+    const post = getPostById(+postId || 991)(state);
 
     return {
         posts: getPostsAsIds(state),
