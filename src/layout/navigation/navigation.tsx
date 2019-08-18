@@ -73,7 +73,7 @@ export const Navigation: SFC = memo(props => (
             Home
         </HomeItem>
 
-        <Item to="/post/719">Leveling Guide</Item>
+        <Item to="/alliance-leveling-guide">Leveling Guide</Item>
 
         <MerchItem
             href="https://www.moteefe.com/store/hydrastore"

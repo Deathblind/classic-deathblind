@@ -1,6 +1,6 @@
 import React, { SFC, memo, useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { withRouter, RouteComponentProps, Route } from "react-router";
+import { withRouter, RouteComponentProps, Route, Redirect } from "react-router";
 import { styled } from "./theme/util/helpers";
 import { defaultPadding } from "./theme/theme/sizes";
 
@@ -47,6 +47,14 @@ export const App: SFC<RouteComponentProps> = memo(
                                 component={component}
                             />
                         ))}
+
+                        <Route
+                            exact
+                            path="/post/719"
+                            render={() => (
+                                <Redirect to="/alliance-leveling-guide" />
+                            )}
+                        />
                     </StyledMain>
 
                     <Footer />

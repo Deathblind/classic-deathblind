@@ -1,11 +1,39 @@
 import React, { SFC, memo } from "react";
-import Tile from "../../../ui/components/post/tile/tile";
 import { connect } from "react-redux";
 import { getPosts } from "../../../wordpress/posts/posts.selector";
 import { RootState } from "../../../store/root";
 import { styled } from "../../../theme/util/helpers";
+import {
+    defaultPadding,
+    defaultBorderRadius,
+    tinyPadding
+} from "../../../theme/theme/sizes";
+import {
+    primarySaturatedBackground,
+    primaryHeadingForeground,
+    primaryForeground
+} from "../../../theme/theme/colors";
+import { smallBodyFontSize } from "../../../theme/theme/font-sizes";
+import { NavLink } from "react-router-dom";
+import { sortPostsById } from "../../../wordpress/posts/posts.sort";
 
-export const StyledSidebar = styled.aside``;
+export const StyledSidebar = styled.aside`
+    padding: ${defaultPadding};
+    background-color: ${primarySaturatedBackground};
+    border-radius: ${defaultBorderRadius};
+    font-size: ${smallBodyFontSize};
+    display: grid;
+    grid-row-gap: ${tinyPadding};
+`;
+
+export const StyledLink = styled(NavLink)`
+    color: ${primaryForeground};
+    text-decoration: none;
+
+    &.active {
+        color: ${primaryHeadingForeground};
+    }
+`;
 
 export interface SidebarItem {
     title: string;
@@ -20,7 +48,12 @@ export const Sidebar: SFC<SidebarProps> = memo(({ items }) => {
     return (
         <StyledSidebar>
             {items.map(({ postId, title }) => (
-                <div key={postId}>{title}</div>
+                <StyledLink
+                    key={postId}
+                    to={`/alliance-leveling-guide/${postId}`}
+                >
+                    {title}
+                </StyledLink>
             ))}
         </StyledSidebar>
     );
@@ -31,7 +64,7 @@ const mapStateToProps = (state: RootState): SidebarProps => {
 
     return {
         items: posts.data
-            ? posts.data.map(post => ({
+            ? sortPostsById(posts.data).map(post => ({
                   title: post.title.rendered,
                   postId: +post.id
               }))
