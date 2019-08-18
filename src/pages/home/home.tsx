@@ -5,11 +5,9 @@ import { styled } from "../../theme/util/helpers";
 import Ratio from "../../ui/components/ratio/ratio";
 import { bigBorderRadius } from "../../theme/theme/sizes";
 import LatestVideos from "./latest-videos/latest-videos";
-import LatestPosts from "./latest-posts/latest-posts";
 import { connect } from "react-redux";
 import { loadPosts } from "../../wordpress/posts/posts.action";
 import { RootState } from "../../store/root";
-import { getPostsAsIds } from "../../wordpress/posts/posts.selector";
 import { loadAuthors } from "../../wordpress/authors/authors.action";
 import { Dispatch, Action } from "redux";
 import { loadVideos } from "../../youtube/youtube.action";
@@ -29,12 +27,10 @@ const StyledIframe = styled.iframe`
 
 export interface HomeProps {
     loadData: () => void;
-    posts: number[];
     videos: Item[];
 }
 
-export const Home: SFC<HomeProps> = memo(({ loadData, posts, videos }) => {
-    const [latestPosts, setLatestPosts] = useState<number[]>([]);
+export const Home: SFC<HomeProps> = memo(({ loadData, videos }) => {
     const [latestVideos, setLatestVideos] = useState<Item[]>([]);
 
     useEffect(() => {
@@ -42,9 +38,8 @@ export const Home: SFC<HomeProps> = memo(({ loadData, posts, videos }) => {
     }, [loadData]);
 
     useEffect(() => {
-        setLatestPosts(posts ? posts.slice(0, 5) : []);
         setLatestVideos(videos ? videos.slice(0, 4) : []);
-    }, [posts, videos]);
+    }, [videos]);
 
     return (
         <>
@@ -66,16 +61,11 @@ export const Home: SFC<HomeProps> = memo(({ loadData, posts, videos }) => {
             <Container>
                 <LatestVideos videos={latestVideos} />
             </Container>
-
-            <Container>
-                <LatestPosts posts={latestPosts} />
-            </Container>
         </>
     );
 });
 
 const mapStateToProps = (state: RootState) => ({
-    posts: getPostsAsIds(state),
     videos: getVideos(state)
 });
 
