@@ -7,6 +7,7 @@ import { loadAuthors } from "../../wordpress/authors/authors.action";
 import { Dispatch, Action } from "redux";
 import { Item } from "../../youtube/youtube.interface";
 import Helmet from "react-helmet";
+import Sidebar from "./sidebar/sidebar";
 
 export interface AllianceLevelingGuideProps {
     loadData: () => void;
@@ -25,6 +26,8 @@ export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
                 <Helmet>
                     <title>Alliance Leveling Guide - Deathblind</title>
                 </Helmet>
+
+                <Sidebar />
             </>
         );
     }

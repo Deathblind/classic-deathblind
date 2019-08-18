@@ -41,3 +41,13 @@ export const buttonCtaBackground = createMode("mode", {
 export const buttonCtaForeground = createMode("mode", {
     dark: ({ theme }) => `hsl(${theme.buttonHues.cta}, 0%, 80%)`
 });
+
+// Wowhead
+
+export const questForeground = createMode("mode", {
+    dark: ({ theme }) => `hsl(${theme.wowheadHues.quest}, 100%, 50%)`
+});
+
+export const npcForeground = createMode("mode", {
+    dark: ({ theme }) => `hsl(${theme.wowheadHues.npc}, 100%, 100%)`
+});

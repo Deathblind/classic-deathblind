@@ -8,7 +8,9 @@ import { RootState } from "../../store/root";
 import {
     pageBackground,
     primaryAccentBackground,
-    primarySaturatedBackground
+    primarySaturatedBackground,
+    questForeground,
+    npcForeground
 } from "../../theme/theme/colors";
 import { h4FontSize } from "../../theme/theme/font-sizes";
 import {
@@ -24,6 +26,30 @@ import { loadAuthors } from "../../wordpress/authors/authors.action";
 import { getAuthorById } from "../../wordpress/authors/authors.selector";
 import { loadPosts } from "../../wordpress/posts/posts.action";
 import { getPostById } from "../../wordpress/posts/posts.selector";
+
+declare global {
+    interface Window {
+        $WowheadPower:
+            | {
+                  refreshLinks: Function;
+              }
+            | undefined;
+    }
+}
+
+const wowheadStyling = css`
+    .wowhead {
+        color: ${npcForeground};
+    }
+
+    .wowhead--quest {
+        color: ${questForeground};
+    }
+
+    .wowhead--npc {
+        color: ${npcForeground};
+    }
+`;
 
 const checkBoxStyling = css`
     label {
@@ -177,6 +203,7 @@ export const StyledPostContent = styled.div`
 
     ${orderedListStyling}
     ${checkBoxStyling}
+    ${wowheadStyling}
 `;
 
 export interface PostProps {
@@ -192,6 +219,12 @@ export const Post: SFC<PostProps> = memo(
         useEffect(() => {
             loadData();
         }, [loadData]);
+
+        useEffect(() => {
+            if (window.$WowheadPower) {
+                window.$WowheadPower.refreshLinks();
+            }
+        }, [content]);
 
         return (
             <>

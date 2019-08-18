@@ -13,6 +13,12 @@ export const defaultTheme: ThemeInterface = {
         cta: classHue.warlock
     },
 
+    wowheadHues: {
+        quest: 49,
+        npc: 49,
+        spell: 49
+    },
+
     gridSpan: 0.375 // 6px
 };
 

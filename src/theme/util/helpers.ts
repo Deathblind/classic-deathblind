@@ -15,6 +15,12 @@ export interface ThemeInterface extends HasMode {
     secondaryHue: number;
     gridSpan: number;
 
+    wowheadHues: {
+        quest: number;
+        npc: number;
+        spell: number;
+    };
+
     buttonHues: {
         cta: number;
     };
