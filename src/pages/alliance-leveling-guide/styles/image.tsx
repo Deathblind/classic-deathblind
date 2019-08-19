@@ -14,4 +14,8 @@ export const imageStyling = css`
         ${afloatBoxShadow};
         border-radius: ${defaultBorderRadius};
     }
+
+    figure {
+        justify-self: flex-end;
+    }
 `;
