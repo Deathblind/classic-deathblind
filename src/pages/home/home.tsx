@@ -4,13 +4,11 @@ import highlightBoxShadow from "../../ui/util/highlight-box-shadow/highlight-box
 import { styled } from "../../theme/util/helpers";
 import Ratio from "../../ui/components/ratio/ratio";
 import { bigBorderRadius } from "../../theme/theme/sizes";
-import LatestVideos from "./latest-videos/latest-videos";
 import { connect } from "react-redux";
 import { loadPosts } from "../../wordpress/posts/posts.action";
 import { RootState } from "../../store/root";
 import { loadAuthors } from "../../wordpress/authors/authors.action";
 import { Dispatch, Action } from "redux";
-import { loadVideos } from "../../youtube/youtube.action";
 import { getVideos } from "../../youtube/youtube.selector";
 import { Item } from "../../youtube/youtube.interface";
 import Helmet from "react-helmet";
@@ -27,19 +25,12 @@ const StyledIframe = styled.iframe`
 
 export interface HomeProps {
     loadData: () => void;
-    videos: Item[];
 }
 
-export const Home: SFC<HomeProps> = memo(({ loadData, videos }) => {
-    const [latestVideos, setLatestVideos] = useState<Item[]>([]);
-
+export const Home: SFC<HomeProps> = memo(({ loadData }) => {
     useEffect(() => {
         loadData();
     }, [loadData]);
-
-    useEffect(() => {
-        setLatestVideos(videos ? videos.slice(0, 4) : []);
-    }, [videos]);
 
     return (
         <>
@@ -57,10 +48,6 @@ export const Home: SFC<HomeProps> = memo(({ loadData, videos }) => {
                     ></StyledIframe>
                 </Ratio>
             </StyledVideoContainer>
-
-            <Container>
-                <LatestVideos videos={latestVideos} />
-            </Container>
         </>
     );
 });
@@ -73,7 +60,6 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
     loadData: () => {
         dispatch(loadPosts());
         dispatch(loadAuthors());
-        dispatch(loadVideos());
     }
 });
 
