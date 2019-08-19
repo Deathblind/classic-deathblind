@@ -4,6 +4,7 @@ import { createEpicMiddleware } from "redux-observable";
 import { createMiddleware } from "redux-beacon";
 import { eventMap, gAnalytics } from "./analytics";
 import { compose } from "ramda";
+import LogRocket from "logrocket";
 
 declare global {
     interface Window {
@@ -14,8 +15,11 @@ declare global {
 
 export const configureStore = (initialState: Partial<RootState> = {}) => {
     const epicMiddleware = createEpicMiddleware();
-    const gaMiddleware = createMiddleware(eventMap, gAnalytics);
-    const middlewares = [epicMiddleware, gaMiddleware];
+    const middlewares = [
+        epicMiddleware,
+        createMiddleware(eventMap, gAnalytics),
+        LogRocket.reduxMiddleware()
+    ];
 
     const composeEnhancers =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

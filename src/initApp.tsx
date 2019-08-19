@@ -14,6 +14,8 @@ import { translations } from "./translations";
 import Theme from "./theme/theme/index";
 import GlobalStyles from "./styles/styles";
 import ScrollToTop from "./scroll-to-top";
+import LogRocket from "logrocket";
+import setupLogRocketReact from "logrocket-react";
 
 const state: Partial<RootState> = { ...window["__STATE__"] };
 delete window["__STATE__"];
@@ -27,6 +29,9 @@ const renderReact = (element, root: HTMLElement) => {
 
     return render(element, root);
 };
+
+LogRocket.init("2ij0ka/deathblind");
+setupLogRocketReact(LogRocket);
 
 export const initApplication = App => {
     renderReact(
