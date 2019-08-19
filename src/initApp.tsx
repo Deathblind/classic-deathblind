@@ -13,6 +13,7 @@ import { IntlProvider } from "react-intl";
 import { translations } from "./translations";
 import Theme from "./theme/theme/index";
 import GlobalStyles from "./styles/styles";
+import ScrollToTop from "./scroll-to-top";
 
 const state: Partial<RootState> = { ...window["__STATE__"] };
 delete window["__STATE__"];
@@ -35,7 +36,10 @@ export const initApplication = App => {
                     <Theme>
                         <>
                             <GlobalStyles />
-                            <App />
+
+                            <ScrollToTop>
+                                <App />
+                            </ScrollToTop>
                         </>
                     </Theme>
                 </Router>

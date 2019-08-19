@@ -35,11 +35,11 @@ export const StyledNavigation = styled.nav`
 export const Item = styled(NavLink)`
     color: ${primarySaturatedForeground};
     text-decoration: none;
-    font-weight: 400;
+    font-weight: 500;
 
     &.active {
         color: ${primaryHeadingForeground};
-        font-weight: 800;
+        font-weight: 700;
     }
 `;
 

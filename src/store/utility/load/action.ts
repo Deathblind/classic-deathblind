@@ -1,16 +1,15 @@
 import { ErrorState } from "../async/error";
-import {Action} from "redux";
+import { Action } from "redux";
 
 export interface ActionPayload<T> extends Action {
     payload: T;
 }
 
-export interface LoadAction {
-}
+export interface LoadAction {}
 
 export interface LoadCompleteAction<T> {
-    data:  T | null;
-    error?: ErrorState;
+    data: T | null;
+    error?: ErrorState | null;
 }
 
 export interface LoadMultipleAction extends LoadAction {

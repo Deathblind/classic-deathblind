@@ -13,7 +13,6 @@ import {
     primaryHeadingForeground,
     primaryForeground
 } from "../../../theme/theme/colors";
-import { smallBodyFontSize } from "../../../theme/theme/font-sizes";
 import { NavLink } from "react-router-dom";
 import { sortPostsById } from "../../../wordpress/posts/posts.sort";
 
@@ -21,7 +20,6 @@ export const StyledSidebar = styled.aside`
     padding: ${defaultPadding};
     background-color: ${primarySaturatedBackground};
     border-radius: ${defaultBorderRadius};
-    font-size: ${smallBodyFontSize};
     display: grid;
     grid-row-gap: ${tinyPadding};
 `;
@@ -32,6 +30,7 @@ export const StyledLink = styled(NavLink)`
 
     &.active {
         color: ${primaryHeadingForeground};
+        font-weight: 600;
     }
 `;
 

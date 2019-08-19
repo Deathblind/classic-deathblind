@@ -29,6 +29,8 @@ import {
     getPostsAsIds
 } from "../../wordpress/posts/posts.selector";
 import Sidebar from "./sidebar/sidebar";
+import QuestAvailable from "../../icons/quest-available.png";
+import QuestComplete from "../../icons/quest-complete.png";
 
 declare global {
     interface Window {
@@ -47,6 +49,14 @@ const wowheadStyling = css`
 
     .wowhead--quest {
         color: ${questForeground};
+    }
+
+    .wowhead--npc {
+        color: ${npcForeground};
+    }
+
+    .wowhead[data-wowhead*="item=6948"] {
+        color: ${primaryAccentBackground} !important;
     }
 `;
 
@@ -89,7 +99,6 @@ const orderedListStyling = css`
         grid-row-gap: ${defaultPadding};
         counter-reset: li;
         padding: 0;
-        font-family: sans-serif;
         list-style: none;
 
         li {
@@ -131,8 +140,6 @@ const orderedListStyling = css`
         }
     }
 `;
-
-export const StyledPost = styled.article``;
 
 export const StyledPostContent = styled.div`
     display: grid;
@@ -177,7 +184,13 @@ export const StyledPostContent = styled.div`
         padding-left: 40px;
     }
 
-    img {
+    .quest-icon {
+        vertical-align: middle;
+        width: 1em;
+        height: 1em;
+    }
+
+    figure > img {
         max-width: 100%;
         max-height: 90vh;
         position: sticky;
@@ -207,9 +220,25 @@ export const StyledPostContent = styled.div`
 
 export const StyledAllianceLevelingGuide = styled(Container)`
     display: grid;
+    grid-template-areas:
+        ". title"
+        "sidebar post";
     grid-template-columns: 250px 1fr;
-    grid-gap: ${bigPadding};
+    grid-column-gap: ${bigPadding};
+    grid-row-gap: initial;
     align-items: flex-start;
+`;
+
+export const StyledPost = styled.article`
+    grid-area: post;
+`;
+
+export const StyledSidebar = styled.div`
+    grid-area: sidebar;
+`;
+
+export const StyledTitle = styled.div`
+    grid-area: title;
 `;
 
 export interface AllianceLevelingGuideProps {
@@ -245,11 +274,15 @@ export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
                 </Helmet>
 
                 <StyledAllianceLevelingGuide>
-                    <Sidebar />
+                    <StyledSidebar>
+                        <Sidebar />
+                    </StyledSidebar>
+
+                    <StyledTitle>
+                        <h1 dangerouslySetInnerHTML={{ __html: title! }}></h1>
+                    </StyledTitle>
 
                     <StyledPost>
-                        <h1 dangerouslySetInnerHTML={{ __html: title! }}></h1>
-
                         <StyledPostContent
                             dangerouslySetInnerHTML={{ __html: content! }}
                         ></StyledPostContent>
@@ -288,6 +321,15 @@ const mapStateToProps = (
                     <div>`
                   )
                   .replace(new RegExp("</li>", "g"), `</div></li>`)
+                  .replace(
+                      /\!\</g,
+                      `<img class="quest-icon" src="${QuestAvailable}" /><`
+                  )
+                  .replace(
+                      /\?\</g,
+                      `<img class="quest-icon" src="${QuestComplete}" /><`
+                  )
+                  .replace(new RegExp("<img", "g"), `<img loading="lazy"`)
             : null,
         title: post ? post.title.rendered : null,
         excerpt: post ? post.excerpt.rendered : null

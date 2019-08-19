@@ -7,11 +7,11 @@ import {
 } from "redux-observable";
 import { Action } from "redux";
 import { loadPosts, loadPostsComplete } from "./posts.action";
-import { switchMap, map, filter } from "rxjs/operators";
+import { switchMap, map, filter, catchError } from "rxjs/operators";
 import { fetchPosts } from "./posts.http";
 import { sortPostsByDate } from "./posts.sort";
-import { getPosts } from "./posts.selector";
 import { RootState } from "../../store/root";
+import { getPosts } from "./posts.selector";
 
 const loadPostsEpic: Epic = (
     action$: ActionsObservable<Action>,
@@ -26,7 +26,8 @@ const loadPostsEpic: Epic = (
             loadPostsComplete({
                 data: posts
             })
-        )
+        ),
+        catchError(error => [loadPostsComplete({ error, data: null })])
     );
 
 export const postsEpic = combineEpics(loadPostsEpic);

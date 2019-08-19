@@ -17,6 +17,9 @@ function itrulia_typeToClass($type) {
 		case 'item':
 			return 'wowhead--item';
 
+		case 'npc':
+			return 'wowhead--npc';
+
 		case 'spell':
 			return 'wowhead--spell';
 	}
@@ -24,7 +27,8 @@ function itrulia_typeToClass($type) {
 
 function itrulia_wowheadtooltips_shortcode( $atts, $content = null ) {
 	return '<a
-		href="https://classic.wowhead.com/' . $atts['type'] . '=' . $atts['id'] . '"
+		target="_blank"
+		href="https://classicdb.ch/?' . $atts['type'] . '=' . $atts['id'] . '"
 		data-wowhead="' . $atts['type'] . '=' . $atts['id'] . ';domain=classic"
 		class="wowhead ' . itrulia_typeToClass($atts['type']) . '"
 	>' . $content .'</a>';

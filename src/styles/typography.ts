@@ -47,6 +47,10 @@ export const Typography = createGlobalStyle`
     svg {
         fill: currentColor;
     }
+
+    b, strong {
+        font-weight: 600;
+    }
 `;
 
 export { Typography as default };
