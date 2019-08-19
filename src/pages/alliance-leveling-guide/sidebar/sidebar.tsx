@@ -63,12 +63,10 @@ const mapStateToProps = (state: RootState): SidebarProps => {
 
     return {
         items: posts.data
-            ? sortPostsById(posts.data)
-                  .filter(({ id }) => id !== 719)
-                  .map(post => ({
-                      title: post.title.rendered,
-                      postId: +post.id
-                  }))
+            ? sortPostsById(posts.data).map(post => ({
+                  title: post.title.rendered,
+                  postId: +post.id
+              }))
             : []
     };
 };

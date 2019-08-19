@@ -29,7 +29,7 @@ function itrulia_wowheadtooltips_shortcode( $atts, $content = null ) {
 	return '<a
 		target="_blank"
 		href="https://classicdb.ch/?' . $atts['type'] . '=' . $atts['id'] . '"
-		data-wowhead="' . $atts['type'] . '=' . $atts['id'] . ';domain=classic"
+		data-wowhead="' . $atts['type'] . '=' . $atts['id'] . '&amp;domain=classic"
 		class="wowhead ' . itrulia_typeToClass($atts['type']) . '"
 	>' . $content .'</a>';
 }
