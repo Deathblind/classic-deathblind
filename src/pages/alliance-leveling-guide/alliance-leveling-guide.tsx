@@ -184,7 +184,7 @@ const mapStateToProps = (
                   .replace(new RegExp("<li>", "g"), function() {
                       return `<li>
                           <label>
-                              <input type='checkbox' data-id="${postID}:${index}" />
+                              <input type='checkbox' data-id="${postID}:${index++}" />
                               <div></div>
                           </label>
                           <div>
@@ -193,10 +193,7 @@ const mapStateToProps = (
                   .replace(new RegExp("</li>", "g"), `</div></li>`)
                   .replace(
                       /\!\?\</g,
-                      `
-                        <img class="quest-icon" src="${QuestAvailable}" />
-                        <img class="quest-icon" src="${QuestComplete}" /><
-                      `
+                      `<img class="quest-icon" src="${QuestAvailable}" /><img class="quest-icon" src="${QuestComplete}" /><`
                   )
                   .replace(
                       /\!\</g,

@@ -20,7 +20,7 @@ module.exports = (config, environment) => {
     config
   );
 
-  config = injectBabelPlugin("add-react-displayname");
+  config = injectBabelPlugin("add-react-displayname", config);
 
   return config;
 };
