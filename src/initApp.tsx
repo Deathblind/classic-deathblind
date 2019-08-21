@@ -53,9 +53,7 @@ export const initApplication = App => {
         document.getElementById("root") as HTMLElement
     );
 
-    serviceWorker.unregister();
-
-    // if (process.env.NODE_ENV === "production") {
-    //     serviceWorker.register();
-    // }
+    if (process.env.NODE_ENV === "production") {
+        serviceWorker.register();
+    }
 };
