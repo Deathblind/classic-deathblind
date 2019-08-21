@@ -31,7 +31,8 @@
     "styled-theming": "^2.2.0"
   },
   "scripts": {
-    "build": "react-app-rewired build && cp _redirects build/_redirects",
+    "preload": "ts-node --compiler-options '{\"module\": \"commonjs\"}' prefetch-data.ts",
+    "build": "npm run preload && react-app-rewired build && cp _redirects build/_redirects",
     "start": "react-app-rewired start",
     "test": "react-app-rewired test --env=jsdom",
     "lint": "tslint --fix --project .",

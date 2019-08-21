@@ -12,54 +12,54 @@ import {
     h6FontSize,
     h6LineHeight
 } from "../../../theme/theme/font-sizes";
-import { stylishFont } from "../../../theme/theme/font-families";
+import { bodyFont } from "../../../theme/theme/font-families";
 import { css } from "../../../theme/util/helpers";
 import { primaryHeadingForeground } from "../../../theme/theme/colors";
 
 export const h1 = css`
     font-size: ${h1FontSize};
     line-height: ${h1LineHeight};
-    font-family: ${stylishFont};
-    font-weight: 400;
+    font-family: ${bodyFont};
+    font-weight: 600;
     color: ${primaryHeadingForeground};
 `;
 
 export const h2 = css`
     font-size: ${h2FontSize};
     line-height: ${h2LineHeight};
-    font-family: ${stylishFont};
-    font-weight: 400;
+    font-family: ${bodyFont};
+    font-weight: 600;
     color: ${primaryHeadingForeground};
 `;
 
 export const h3 = css`
     font-size: ${h3FontSize};
     line-height: ${h3LineHeight};
-    font-family: ${stylishFont};
-    font-weight: 400;
+    font-family: ${bodyFont};
+    font-weight: 600;
     color: ${primaryHeadingForeground};
 `;
 
 export const h4 = css`
     font-size: ${h4FontSize};
     line-height: ${h4LineHeight};
-    font-family: ${stylishFont};
-    font-weight: 400;
+    font-family: ${bodyFont};
+    font-weight: 600;
     color: ${primaryHeadingForeground};
 `;
 
 export const h5 = css`
     font-size: ${h5FontSize};
     line-height: ${h5LineHeight};
-    font-family: ${stylishFont};
-    font-weight: 400;
+    font-family: ${bodyFont};
+    font-weight: 600;
     color: ${primaryHeadingForeground};
 `;
 
 export const h6 = css`
     font-size: ${h6FontSize};
     line-height: ${h6LineHeight};
-    font-family: ${stylishFont};
-    font-weight: 400;
+    font-family: ${bodyFont};
+    font-weight: 600;
     color: ${primaryHeadingForeground};
 `;
