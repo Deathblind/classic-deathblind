@@ -11,7 +11,7 @@ import {
     AsyncState,
     AsyncStateMap
 } from "../async/state";
-import {Reducer, AnyAction} from "redux";
+import { Reducer, AnyAction } from "redux";
 import { produce } from "immer";
 
 type LoadMultipleBundle<EntryType> =
@@ -25,7 +25,10 @@ export function createMultipleLoadReducer<EntryType>(
 ): Reducer<AsyncStateMap<EntryType>, any> {
     const initialState = {};
 
-    return (state = initialState, action: ActionPayload<LoadMultipleBundle<EntryType>>) => {
+    return (
+        state = initialState,
+        action: ActionPayload<LoadMultipleBundle<EntryType>>
+    ) => {
         if (action.type === loading) {
             return produce(state, (draft: any) => ({
                 ...draft,
@@ -40,7 +43,9 @@ export function createMultipleLoadReducer<EntryType>(
                 ...draft,
                 [action.payload.id]: setToLoadingComplete(
                     draft[action.payload.id],
-                    action as ActionPayload<LoadMultipleCompleteAction<EntryType>>
+                    action as ActionPayload<
+                        LoadMultipleCompleteAction<EntryType>
+                    >
                 )
             }));
         }
@@ -56,19 +61,26 @@ type LoadBundle<EntryType> =
 
 export function createLoadReducer<EntryType>(
     loading: string,
-    complete: string
+    complete: string,
+    initialData?: EntryType
 ): Reducer<AsyncState<EntryType>, any> {
-    const initialState = createLoadingAsyncState<EntryType>();
+    const initialState = {
+        ...createLoadingAsyncState<EntryType>(),
+        data: initialData ? initialData : null
+    };
 
-    return (state = initialState, action: ActionPayload<LoadBundle<EntryType>>) => {
+    return (
+        state = initialState,
+        action: ActionPayload<LoadBundle<EntryType>>
+    ) => {
         if (action.type === loading) {
             return setToLoading(state);
         }
 
         if (action.type === complete) {
-            return setToLoadingComplete(state, action as ActionPayload<LoadCompleteAction<
-                EntryType
-            >>);
+            return setToLoadingComplete(state, action as ActionPayload<
+                LoadCompleteAction<EntryType>
+            >);
         }
 
         return state;
