@@ -107,7 +107,9 @@ export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
 
         useEffect(() => {
             if (window.$WowheadPower) {
-                window.$WowheadPower.refreshLinks();
+                try {
+                    window.$WowheadPower.refreshLinks();
+                } catch {}
             }
         }, [content]);
 
