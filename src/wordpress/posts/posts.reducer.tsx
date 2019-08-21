@@ -7,6 +7,5 @@ export interface PostsState extends AsyncState<Post[]> {}
 
 export const postsReducer = createLoadReducer<Post[]>(
     loadPosts.type,
-    loadPostsComplete.type,
-    require("./posts.initial-state.json")
+    loadPostsComplete.type
 );

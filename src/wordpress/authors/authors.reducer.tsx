@@ -7,6 +7,5 @@ export interface AuthorsState extends AsyncState<Author[]> {}
 
 export const authorsReducer = createLoadReducer<Author[]>(
     loadAuthors.type,
-    loadAuthorsComplete.type,
-    require("./authors.initial-state.json")
+    loadAuthorsComplete.type
 );
