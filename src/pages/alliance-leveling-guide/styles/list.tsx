@@ -10,7 +10,6 @@ import {
 } from "../../../theme/theme/colors";
 import afloatBoxShadow from "../../../ui/util/afloat-box-shadow/afloat-box-shadow";
 import { h4FontSize } from "../../../theme/theme/font-sizes";
-import Checkmark from "../../../icons/checkmark.svg";
 
 export const listStyling = css`
     ul,

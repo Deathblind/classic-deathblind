@@ -1,4 +1,5 @@
 import { createMode } from "../util/mode";
+import { desaturate } from "polished";
 
 export const primaryForeground = createMode("mode", {
     dark: ({ theme }) => `hsl(${theme.primaryHue}, 15%, 69%)`
@@ -24,6 +25,10 @@ export const primaryAccentBackground = createMode("mode", {
     dark: ({ theme }) => `hsl(${theme.primaryHue}, 74%, 67%)`
 });
 
+export const primaryAccentForeground = createMode("mode", {
+    dark: ({ theme }) => `hsl(${theme.primaryHue}, 74%, 100%)`
+});
+
 export const divider = createMode("mode", {
     dark: ({ theme }) => `hsl(${theme.primaryHue}, 23%, 23%)`
 });
@@ -34,12 +39,10 @@ export const pageBackground = createMode("mode", {
 
 // Buttons
 
-export const buttonCtaBackground = createMode("mode", {
-    dark: ({ theme }) => `hsl(${theme.buttonHues.cta}, 40%, 56%)`
-});
-
-export const buttonCtaForeground = createMode("mode", {
-    dark: ({ theme }) => `hsl(${theme.buttonHues.cta}, 0%, 80%)`
+export const buttonCtaBackground = primaryAccentBackground;
+export const buttonCtaForeground = primaryAccentForeground;
+export const buttonCtaDisabledBackground = createMode("mode", {
+    dark: ({ theme }) => desaturate(0.5, primaryAccentBackground({ theme }))
 });
 
 // Wowhead

@@ -9,9 +9,6 @@ export const defaultTheme: ThemeInterface = {
     mode: "dark",
     primaryHue: 220,
     secondaryHue: classHue.hunter,
-    buttonHues: {
-        cta: classHue.warlock
-    },
 
     wowheadHues: {
         quest: 49,

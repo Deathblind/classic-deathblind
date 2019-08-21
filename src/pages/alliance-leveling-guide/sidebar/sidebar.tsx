@@ -15,6 +15,7 @@ import {
 } from "../../../theme/theme/colors";
 import { NavLink } from "react-router-dom";
 import { sortPostsById } from "../../../wordpress/posts/posts.sort";
+import { decodeHTMLEntities } from "../../../util/decode-html-entities";
 
 export const StyledSidebar = styled.aside`
     padding: ${defaultPadding};
@@ -63,8 +64,8 @@ const mapStateToProps = (state: RootState): SidebarProps => {
 
     return {
         items: posts.data
-            ? sortPostsById(posts.data).map(post => ({
-                  title: post.title.rendered,
+            ? posts.data.map(post => ({
+                  title: decodeHTMLEntities(post.title.rendered),
                   postId: +post.id
               }))
             : []

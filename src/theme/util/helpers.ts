@@ -20,10 +20,6 @@ export interface ThemeInterface extends HasMode {
         npc: number;
         spell: number;
     };
-
-    buttonHues: {
-        cta: number;
-    };
 }
 
 export { css, styled, keyframes, ThemeProvider, createGlobalStyle };
