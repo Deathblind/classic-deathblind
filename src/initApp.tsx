@@ -8,8 +8,6 @@ import { configureStore } from "./store/store";
 import { Router } from "react-router";
 import { history } from "./store/states/history/history";
 
-import { IntlProvider } from "react-intl";
-import { translations } from "./translations";
 import Theme from "./theme/theme/index";
 import GlobalStyles from "./styles/styles";
 import ScrollToTop from "./scroll-to-top";
@@ -35,19 +33,17 @@ setupLogRocketReact(LogRocket);
 export const initApplication = App => {
     renderReact(
         <Provider store={store}>
-            <IntlProvider locale="en" messages={translations}>
-                <Router history={history!}>
-                    <Theme>
-                        <>
-                            <GlobalStyles />
+            <Router history={history!}>
+                <Theme>
+                    <>
+                        <GlobalStyles />
 
-                            <ScrollToTop>
-                                <App />
-                            </ScrollToTop>
-                        </>
-                    </Theme>
-                </Router>
-            </IntlProvider>
+                        <ScrollToTop>
+                            <App />
+                        </ScrollToTop>
+                    </>
+                </Theme>
+            </Router>
         </Provider>,
         document.getElementById("root") as HTMLElement
     );

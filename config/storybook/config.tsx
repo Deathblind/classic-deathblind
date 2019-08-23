@@ -5,7 +5,6 @@ import { withNotes } from "@storybook/addon-notes";
 import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "../../src/theme/theme";
 import React from "react";
-import { IntlProvider } from "react-intl";
 import { translations } from "../../src/translations";
 import StoryRouter from "storybook-react-router";
 import GlobalStyles from "../../src/styles/styles";
@@ -21,12 +20,10 @@ addDecorator(
 );
 addDecorator(withNotes);
 addDecorator(story => (
-    <IntlProvider locale="en" messages={translations}>
-        <>
-            <GlobalStyles />
-            {story()}
-        </>
-    </IntlProvider>
+    <>
+        <GlobalStyles />
+        {story()}
+    </>
 ));
 addDecorator(story => (
     <ThemeProvider theme={defaultTheme}>
@@ -35,9 +32,7 @@ addDecorator(story => (
 ));
 
 const store = configureStore();
-addDecorator(story => (
-    <Provider store={store}>{story()}</Provider>
-));
+addDecorator(story => <Provider store={store}>{story()}</Provider>);
 
 const req = require.context("../../src", true, /.story.tsx$/);
 function loadStories() {
