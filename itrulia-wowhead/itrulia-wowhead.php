@@ -20,16 +20,30 @@ function itrulia_typeToClass($type) {
 		case 'npc':
 			return 'wowhead--npc';
 
+		case 'friendlynpc':
+			return 'wowhead--friendly-npc';
+
 		case 'spell':
 			return 'wowhead--spell';
 	}
 }
 
+function itrulia_fixedType($type) {
+	switch($type) {
+		case 'friendlynpc':
+			return 'npc';
+	}
+
+	return $type;
+}
+
 function itrulia_wowheadtooltips_shortcode( $atts, $content = null ) {
+	$type = itrulia_fixedType($atts['type']);
+
 	return '<a
 		target="_blank"
-		href="https://classicdb.ch/?' . $atts['type'] . '=' . $atts['id'] . '"
-		data-wowhead="' . $atts['type'] . '=' . $atts['id'] . '&amp;domain=classic"
+		href="https://classicdb.ch/?' . $type . '=' . $atts['id'] . '"
+		data-wowhead="' . $type . '=' . $atts['id'] . '&amp;domain=classic"
 		class="wowhead ' . itrulia_typeToClass($atts['type']) . '"
 	>' . $content .'</a>';
 }

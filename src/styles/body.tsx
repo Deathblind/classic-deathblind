@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "../theme/util/helpers";
-import {pageBackground} from "../theme/theme/colors";
+import { pageBackground } from "../theme/theme/colors";
 
 export const Body = createGlobalStyle`
     html {

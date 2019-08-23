@@ -1,5 +1,12 @@
-import { useState, useEffect, useRef, cloneElement, createElement, Children } from "react";
-import {isClient} from "../../util/is-client";
+import {
+    useState,
+    useEffect,
+    useRef,
+    cloneElement,
+    createElement,
+    Children
+} from "react";
+import { isClient } from "../../util/is-client";
 
 export interface UseSizeState {
     width: number;
@@ -8,87 +15,94 @@ export interface UseSizeState {
 
 const DRAF = (callback: () => void) => setTimeout(callback, 35);
 
-export type Element = ((state: UseSizeState) => React.ReactElement<any>) | React.ReactElement<any>;
+export type Element =
+    | ((state: UseSizeState) => React.ReactElement<any>)
+    | React.ReactElement<any>;
 
 export const useSize = (
-  element: Element,
-  { width = Infinity, height = Infinity }: Partial<UseSizeState> = {}
+    element: Element,
+    { width = Infinity, height = Infinity }: Partial<UseSizeState> = {}
 ): [React.ReactElement<any>, UseSizeState] => {
-  if (!isClient) {
-    return [typeof element === "function" ? element({ width, height }) : element, { width, height }];
-  }
-
-  const [state, setState] = useState<UseSizeState>({ width, height });
-
-  if (typeof element === "function") {
-    element = element(state);
-  }
-
-  const style = element.props.style || {};
-  const ref = useRef<HTMLIFrameElement | null>(null);
-  let window: Window | null = null;
-  const setSize = () => {
-    const iframe = ref.current;
-    const size = iframe
-      ? {
-          width: iframe.offsetWidth,
-          height: iframe.offsetHeight,
-        }
-      : { width, height };
-
-    setState(size);
-  };
-  const onWindow = (windowToListenOn: Window) => {
-    windowToListenOn.addEventListener("resize", setSize);
-    DRAF(setSize);
-  };
-
-  useEffect(() => {
-    const iframe: HTMLIFrameElement = ref.current!;
-    if (iframe.contentWindow) {
-      window = iframe.contentWindow!;
-      onWindow(window);
-    } else {
-      const onLoad = () => {
-        iframe.removeEventListener("load", onLoad);
-        window = iframe.contentWindow!;
-        onWindow(window);
-      };
-
-      iframe.addEventListener("load", onLoad);
+    if (!isClient) {
+        return [
+            typeof element === "function"
+                ? element({ width, height })
+                : element,
+            { width, height }
+        ];
     }
 
-    return () => {
-      if (window) {
-        window.removeEventListener("resize", setSize);
-      }
+    const [state, setState] = useState<UseSizeState>({ width, height });
+
+    if (typeof element === "function") {
+        element = element(state);
+    }
+
+    const style = element.props.style || {};
+    const ref = useRef<HTMLIFrameElement | null>(null);
+    let window: Window | null = null;
+    const setSize = () => {
+        const iframe = ref.current;
+        const size = iframe
+            ? {
+                  width: iframe.offsetWidth,
+                  height: iframe.offsetHeight
+              }
+            : { width, height };
+
+        setState(size);
     };
-  }, []);
+    const onWindow = (windowToListenOn: Window) => {
+        windowToListenOn.addEventListener("resize", setSize);
+        DRAF(setSize);
+    };
 
-  style.position = "relative";
+    useEffect(() => {
+        const iframe: HTMLIFrameElement = ref.current!;
+        if (iframe.contentWindow) {
+            window = iframe.contentWindow!;
+            onWindow(window);
+        } else {
+            const onLoad = () => {
+                iframe.removeEventListener("load", onLoad);
+                window = iframe.contentWindow!;
+                onWindow(window);
+            };
 
-  const sized = cloneElement(
-    element,
-    { style },
-    ...[
-      createElement("iframe", {
-        ref,
-        style: {
-          background: "transparent",
-          border: "none",
-          height: "100%",
-          left: 0,
-          position: "absolute",
-          top: 0,
-          width: "100%",
-          zIndex: -1,
-        },
-      }),
-      ...Children.toArray(element.props.children),
-    ]
-  );
+            iframe.addEventListener("load", onLoad);
+        }
 
-  return [sized, state];
+        return () => {
+            if (window) {
+                window.removeEventListener("resize", setSize);
+            }
+        };
+    }, []);
+
+    style.position = "relative";
+
+    const sized = cloneElement(
+        element,
+        { style },
+        ...[
+            createElement("iframe", {
+                ref,
+                style: {
+                    background: "transparent",
+                    border: "none",
+                    height: "100%",
+                    left: 0,
+                    position: "absolute",
+                    top: 0,
+                    width: "100%",
+                    zIndex: -1
+                }
+            }),
+            ...Children.toArray(element.props.children)
+        ]
+    );
+
+    return [sized, state];
 };
 
 export default useSize;

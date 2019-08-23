@@ -54,3 +54,7 @@ export const questForeground = createMode("mode", {
 export const npcForeground = createMode("mode", {
     dark: ({ theme }) => `hsl(${theme.wowheadHues.npc}, 75%, 50%)`
 });
+
+export const friendlyNpcForeground = createMode("mode", {
+    dark: ({ theme }) => `hsl(${theme.wowheadHues.friendlyNpc}, 75%, 50%)`
+});

@@ -6,7 +6,6 @@ import { defaultPadding } from "./theme/theme/sizes";
 
 import Navigation from "./layout/navigation/navigation";
 import Footer from "./layout/footer/footer";
-import Header from "./layout/header/header";
 import routes from "./routes";
 
 const StyledApp = styled.div`
@@ -27,7 +26,7 @@ export const App: SFC<RouteComponentProps> = memo(
 
         useEffect(() => {
             setCurrentUrl(window.location.href);
-        }, [location.pathname]);
+        }, []);
 
         return (
             <>

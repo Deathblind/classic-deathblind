@@ -13,6 +13,7 @@ export const defaultTheme: ThemeInterface = {
     wowheadHues: {
         quest: 49,
         npc: 0,
+        friendlyNpc: 30,
         spell: 49
     },
 

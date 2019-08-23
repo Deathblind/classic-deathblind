@@ -5,7 +5,6 @@ import {
     ActionsObservable,
     StateObservable
 } from "redux-observable";
-import { Observable } from "rxjs";
 import { Action } from "redux";
 import { switchMap, map, filter } from "rxjs/operators";
 import { fetchAuthors } from "./authors.http";

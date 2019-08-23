@@ -13,6 +13,9 @@ export const tinyPadding = ({ theme }: ThemeProps) => `${theme.gridSpan}rem`;
 // Margin
 export const defaultMargin = ({ theme }: ThemeProps) =>
     `${theme.gridSpan * 4}rem`;
+export const bigMargin = ({ theme }: ThemeProps) => `${theme.gridSpan * 6}rem`;
+export const insaneMargin = ({ theme }: ThemeProps) =>
+    `${theme.gridSpan * 8}rem`;
 
 // Border Radius
 export const defaultBorderRadius = ({ theme }: ThemeProps) => `4px`;

@@ -18,6 +18,7 @@ export interface ThemeInterface extends HasMode {
     wowheadHues: {
         quest: number;
         npc: number;
+        friendlyNpc: number;
         spell: number;
     };
 }

@@ -1,7 +1,7 @@
-export const h1FontSize = ({ theme }) => `${theme.gridSpan * 10}rem`;
+export const h1FontSize = ({ theme }) => `${theme.gridSpan * 8}rem`;
 export const h1LineHeight = ({ theme }) => `1.1`;
 
-export const h2FontSize = ({ theme }) => `${theme.gridSpan * 8}rem`;
+export const h2FontSize = ({ theme }) => `${theme.gridSpan * 7}rem`;
 export const h2LineHeight = ({ theme }) => `1.1`;
 
 export const h3FontSize = ({ theme }) => `${theme.gridSpan * 6}rem`;

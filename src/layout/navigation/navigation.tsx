@@ -16,6 +16,7 @@ import { ReactComponent as ShoppingCart } from "../../icons/cart.svg";
 import Logo from "../../icons/logo.png";
 import { h6FontSize } from "../../theme/theme/font-sizes";
 import Image from "../../elements/image/image";
+import { tablet } from "../../theme/theme/responsive";
 
 export const StyledNavigation = styled.nav`
     margin-left: ${defaultPadding};
@@ -24,12 +25,15 @@ export const StyledNavigation = styled.nav`
     padding-bottom: ${defaultPadding};
     padding-top: ${defaultPadding};
     display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: max-content max-content max-content;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     grid-column-gap: ${defaultPadding};
     border-bottom: 2px solid ${divider};
     font-size: ${h6FontSize};
+
+    ${tablet`
+        grid-template-columns: max-content max-content max-content;
+    `}
 `;
 
 export const Item = styled(NavLink)`
@@ -53,13 +57,18 @@ export const HomeItem = styled(Item)`
 export const MerchItem = styled.a`
     color: ${primaryAccentBackground};
     text-decoration: none;
-    font-weight: 400;
     display: grid;
     grid-template-columns: 24px max-content;
     grid-column-gap: ${tinyPadding};
     align-items: center;
-    padding-left: ${defaultPadding};
-    border-left: 2px solid ${divider};
+    justify-self: center;
+    grid-column: -1/1;
+
+    ${tablet`
+        border-left: 2px solid ${divider};
+        padding-left: ${defaultPadding};
+        grid-column: initial;
+    `}
 `;
 
 Item.defaultProps = {

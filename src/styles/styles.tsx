@@ -1,8 +1,8 @@
 import React, { SFC } from "react";
-import Typography from "./typography";
-import Body from "./body";
+import Normalize from "./normalize";
 import BoxSizing from "./box-sizing";
-import { GoogleFont, FontWeight } from "./font";
+import Body from "./body";
+import Typography from "./typography";
 import Helmet from "react-helmet";
 
 export const GlobalStyles: SFC = () => (
@@ -11,7 +11,7 @@ export const GlobalStyles: SFC = () => (
             <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         </Helmet>
 
-        <GoogleFont fonts={[{ family: "Nanum Brush Script" }]} />
+        <Normalize />
         <BoxSizing />
         <Typography />
         <Body />

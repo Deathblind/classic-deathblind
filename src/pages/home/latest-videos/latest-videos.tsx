@@ -47,6 +47,7 @@ export const LatestVideos: SFC<LatestVideosProps> = memo(({ videos }) => {
                 <StyledLatestVideoHightlight>
                     <Ratio antecedent={4} consequent={2}>
                         <iframe
+                            title={latestVideo.id.videoId}
                             src={`https://www.youtube.com/embed/${latestVideo.id.videoId}`}
                             frameBorder="0"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -66,6 +67,7 @@ export const LatestVideos: SFC<LatestVideosProps> = memo(({ videos }) => {
                                     frameBorder="0"
                                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
+                                    title={video.id.videoId}
                                 ></iframe>
                             </Ratio>
                         </VideoTile>

@@ -1,4 +1,4 @@
-import React, { SFC, memo, useEffect, useState } from "react";
+import React, { SFC, memo, useEffect } from "react";
 import Container from "../../ui/components/container/container";
 import highlightBoxShadow from "../../ui/util/highlight-box-shadow/highlight-box-shadow";
 import { styled } from "../../theme/util/helpers";
@@ -10,7 +10,6 @@ import { RootState } from "../../store/root";
 import { loadAuthors } from "../../wordpress/authors/authors.action";
 import { Dispatch, Action } from "redux";
 import { getVideos } from "../../youtube/youtube.selector";
-import { Item } from "../../youtube/youtube.interface";
 import Helmet from "react-helmet";
 
 const StyledVideoContainer = styled(Container)`

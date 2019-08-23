@@ -1,10 +1,10 @@
-import React, { memo, SFC, useEffect, useState } from "react";
+import React, { memo, SFC, useEffect } from "react";
 import Helmet from "react-helmet";
 import { connect } from "react-redux";
 import { match } from "react-router";
 import { Action, Dispatch } from "redux";
 import { RootState } from "../../store/root";
-import { defaultPadding, bigPadding } from "../../theme/theme/sizes";
+import { defaultPadding, bigPadding, bigMargin } from "../../theme/theme/sizes";
 import { styled } from "../../theme/util/helpers";
 import Container from "../../ui/components/container/container";
 import { decodeHTMLEntities } from "../../util/decode-html-entities";
@@ -23,6 +23,7 @@ import { checkBoxStyling } from "./styles/checkbox";
 import { blockStyling } from "./styles/block";
 import { quoteStyling } from "./styles/quote";
 import Cta from "../../ui/components/cta/cta";
+import { tablet, desktop, hideOnMobile } from "../../theme/theme/responsive";
 
 declare global {
     interface Window {
@@ -36,9 +37,12 @@ declare global {
 
 export const StyledPostContent = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-gap: ${defaultPadding};
     line-height: 1.5;
+
+    ${tablet`
+        grid-template-columns: 1fr 1fr;
+    `}
 
     ${blockStyling}
     ${listStyling}
@@ -51,12 +55,23 @@ export const StyledPostContent = styled.div`
 export const StyledAllianceLevelingGuide = styled(Container)`
     display: grid;
     grid-template-areas:
-        ". title"
-        "sidebar post";
-    grid-template-columns: 250px 1fr;
+        "title"
+        "sidebar"
+        "post";
+
+    grid-template-columns: 1fr;
     grid-column-gap: ${bigPadding};
-    grid-row-gap: initial;
+    grid-row-gap: ${bigPadding};
     align-items: flex-start;
+
+    ${desktop`
+        grid-template-areas:
+            ". title"
+            "sidebar post";
+
+        grid-template-columns: 250px 1fr;
+        grid-row-gap: initial;
+    `}
 `;
 
 export const StyledPost = styled.article`
@@ -72,35 +87,46 @@ export const StyledTitle = styled.div`
 `;
 
 export const StyledNavigationButtonsWrapper = styled.div`
-    display: inline-grid;
+    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: ${defaultPadding};
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: ${bigMargin};
+
+    ${tablet`
+        grid-template-columns: auto auto;
+    `}
 `;
+
+export const StyledNextPrevTitle = styled.strong`
+    ${hideOnMobile};
+`;
+
+export const StyledPageHeader = styled.h1``;
 
 export interface AllianceLevelingGuideProps {
     loadData: () => void;
-    posts: number[];
-    postId: number;
     content: string | null;
     title: string | null;
     excerpt: string | null;
+    previousPostId: number | null;
+    previousPostTitle: string | null;
+    nextPostId: number | null;
+    nextPostTitle: string | null;
 }
 
 export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
-    ({ loadData, content, title, excerpt, posts, postId }) => {
-        const [nextPost, setNextPost] = useState<number | null>(null);
-        const [previousPost, setPreviousPost] = useState<number | null>(null);
-
-        useEffect(() => {
-            const index = posts.indexOf(postId);
-            const minIndex = 0;
-            const maxIndex = posts.length - 1;
-
-            setPreviousPost(index === minIndex ? null : posts[index - 1]);
-            setNextPost(index === maxIndex ? null : posts[index + 1]);
-        }, [posts, postId]);
-
+    ({
+        loadData,
+        content,
+        title,
+        excerpt,
+        previousPostId,
+        previousPostTitle,
+        nextPostId,
+        nextPostTitle
+    }) => {
         useEffect(() => {
             loadData();
         }, [loadData]);
@@ -131,10 +157,39 @@ export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
                     </StyledSidebar>
 
                     <StyledTitle>
-                        <h1 dangerouslySetInnerHTML={{ __html: title! }}></h1>
+                        <StyledPageHeader
+                            dangerouslySetInnerHTML={{ __html: title! }}
+                        ></StyledPageHeader>
                     </StyledTitle>
 
                     <StyledPost>
+                        {content && (
+                            <StyledNavigationButtonsWrapper>
+                                <Cta
+                                    to={`/alliance-leveling-guide/${previousPostId}`}
+                                    disabled={!previousPostId}
+                                >
+                                    Previous{" "}
+                                    {previousPostTitle && (
+                                        <StyledNextPrevTitle>
+                                            ({previousPostTitle})
+                                        </StyledNextPrevTitle>
+                                    )}
+                                </Cta>
+                                <Cta
+                                    to={`/alliance-leveling-guide/${nextPostId}`}
+                                    disabled={!nextPostId}
+                                >
+                                    Next{" "}
+                                    {nextPostTitle && (
+                                        <StyledNextPrevTitle>
+                                            ({nextPostTitle})
+                                        </StyledNextPrevTitle>
+                                    )}
+                                </Cta>
+                            </StyledNavigationButtonsWrapper>
+                        )}
+
                         <StyledPostContent
                             dangerouslySetInnerHTML={{ __html: content! }}
                         ></StyledPostContent>
@@ -142,16 +197,26 @@ export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
                         {content && (
                             <StyledNavigationButtonsWrapper>
                                 <Cta
-                                    to={`/alliance-leveling-guide/${previousPost}`}
-                                    disabled={!previousPost}
+                                    to={`/alliance-leveling-guide/${previousPostId}`}
+                                    disabled={!previousPostId}
                                 >
-                                    Previous Section
+                                    Previous{" "}
+                                    {previousPostTitle && (
+                                        <StyledNextPrevTitle>
+                                            ({previousPostTitle})
+                                        </StyledNextPrevTitle>
+                                    )}
                                 </Cta>
                                 <Cta
-                                    to={`/alliance-leveling-guide/${nextPost}`}
-                                    disabled={!nextPost}
+                                    to={`/alliance-leveling-guide/${nextPostId}`}
+                                    disabled={!nextPostId}
                                 >
-                                    Next Section
+                                    Next{" "}
+                                    {nextPostTitle && (
+                                        <StyledNextPrevTitle>
+                                            ({nextPostTitle})
+                                        </StyledNextPrevTitle>
+                                    )}
                                 </Cta>
                             </StyledNavigationButtonsWrapper>
                         )}
@@ -161,6 +226,22 @@ export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
         );
     }
 );
+
+const getPrevNextPostIds = (
+    postId: number,
+    posts: number[]
+): (number | null)[] => {
+    const currentPostIndex = posts.indexOf(postId);
+    const minPostIndex = 0;
+    const maxPostIndex = posts.length - 1;
+
+    const previousPostId =
+        currentPostIndex === minPostIndex ? null : posts[currentPostIndex - 1];
+    const nextPostId =
+        currentPostIndex === maxPostIndex ? null : posts[currentPostIndex + 1];
+
+    return [previousPostId, nextPostId];
+};
 
 interface ConnectedToPostProps {
     match: match<{ postId: string }>;
@@ -174,13 +255,23 @@ const mapStateToProps = (
         }
     }: ConnectedToPostProps
 ) => {
-    const postID = +postId || 991;
+    const posts = getPostsAsIds(state);
+    const postID = +postId || posts[0];
     const post = getPostById(postID)(state);
     let index = 1;
 
+    const [previousPostId, nextPostId] = getPrevNextPostIds(postID, posts);
+    const previousPost = getPostById(previousPostId!)(state);
+    const previousPostTitle = previousPost
+        ? decodeHTMLEntities(previousPost.title.rendered)
+        : null;
+
+    const nextPost = getPostById(nextPostId!)(state);
+    const nextPostTitle = nextPost
+        ? decodeHTMLEntities(nextPost.title.rendered)
+        : null;
+
     return {
-        postId: postID,
-        posts: getPostsAsIds(state),
         content: post
             ? post.content.rendered
                   .replace(new RegExp("<li>", "g"), function() {
@@ -194,21 +285,25 @@ const mapStateToProps = (
                   })
                   .replace(new RegExp("</li>", "g"), `</div></li>`)
                   .replace(
-                      /\!\?\</g,
+                      /!\?</g,
                       `<img class="quest-icon" src="${QuestAvailable}" /><img class="quest-icon" src="${QuestComplete}" /><`
                   )
                   .replace(
-                      /\!\</g,
+                      /!</g,
                       `<img class="quest-icon" src="${QuestAvailable}" /><`
                   )
                   .replace(
-                      /\?\</g,
+                      /\?</g,
                       `<img class="quest-icon" src="${QuestComplete}" /><`
                   )
                   .replace(new RegExp("<img", "g"), `<img loading="lazy"`)
             : null,
         title: post ? post.title.rendered : null,
-        excerpt: post ? post.excerpt.rendered : null
+        excerpt: post ? post.excerpt.rendered : null,
+        previousPostId,
+        previousPostTitle,
+        nextPostId,
+        nextPostTitle
     };
 };
 

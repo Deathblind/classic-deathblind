@@ -14,7 +14,6 @@ import {
     primaryForeground
 } from "../../../theme/theme/colors";
 import { NavLink } from "react-router-dom";
-import { sortPostsById } from "../../../wordpress/posts/posts.sort";
 import { decodeHTMLEntities } from "../../../util/decode-html-entities";
 
 export const StyledSidebar = styled.aside`

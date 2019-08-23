@@ -2,7 +2,8 @@ import { css } from "../../../theme/util/helpers";
 import {
     questForeground,
     npcForeground,
-    primaryAccentBackground
+    primaryAccentBackground,
+    friendlyNpcForeground
 } from "../../../theme/theme/colors";
 
 export const wowStyling = css`
@@ -16,6 +17,10 @@ export const wowStyling = css`
 
     .wowhead--npc {
         color: ${npcForeground};
+    }
+
+    .wowhead--friendly-npc {
+        color: ${friendlyNpcForeground};
     }
 
     /* Hearthstone */

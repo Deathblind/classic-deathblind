@@ -14,6 +14,8 @@ export const Typography = createGlobalStyle`
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+
+        word-break: break-word;
     }
 
     h1 {
@@ -46,6 +48,7 @@ export const Typography = createGlobalStyle`
 
     svg {
         fill: currentColor;
+        max-width: 100%;
     }
 
     b, strong {
