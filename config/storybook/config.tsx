@@ -5,7 +5,6 @@ import { withNotes } from "@storybook/addon-notes";
 import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "../../src/theme/theme";
 import React from "react";
-import { translations } from "../../src/translations";
 import StoryRouter from "storybook-react-router";
 import GlobalStyles from "../../src/styles/styles";
 import { Provider } from "react-redux";

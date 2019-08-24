@@ -3,27 +3,28 @@ import Helmet from "react-helmet";
 import { connect } from "react-redux";
 import { match } from "react-router";
 import { Action, Dispatch } from "redux";
+import QuestAvailable from "../../icons/quest-available.png";
+import QuestComplete from "../../icons/quest-complete.png";
 import { RootState } from "../../store/root";
-import { defaultPadding, bigPadding, bigMargin } from "../../theme/theme/sizes";
+import { desktop, hideOnMobile, tablet } from "../../theme/theme/responsive";
+import { bigMargin, bigPadding, defaultPadding } from "../../theme/theme/sizes";
 import { styled } from "../../theme/util/helpers";
 import Container from "../../ui/components/container/container";
+import Cta from "../../ui/components/cta/cta";
 import { decodeHTMLEntities } from "../../util/decode-html-entities";
 import { loadPosts } from "../../wordpress/posts/posts.action";
 import {
     getPostById,
     getPostsAsIds
 } from "../../wordpress/posts/posts.selector";
+import { blockStyling as defaultBlockStyling } from "../../wordpress/styles/block";
 import Sidebar from "./sidebar/sidebar";
-import QuestAvailable from "../../icons/quest-available.png";
-import QuestComplete from "../../icons/quest-complete.png";
-import { listStyling } from "./styles/list";
-import { imageStyling } from "./styles/image";
-import { wowStyling } from "./styles/wow";
-import { checkBoxStyling } from "./styles/checkbox";
-import { blockStyling } from "./styles/block";
-import { quoteStyling } from "./styles/quote";
-import Cta from "../../ui/components/cta/cta";
-import { tablet, desktop, hideOnMobile } from "../../theme/theme/responsive";
+import blockStyling from "./styles/blockStyling";
+import checkBoxStyling from "./styles/checkbox";
+import imageStyling from "./styles/image";
+import listStyling from "./styles/list";
+import quoteStyling from "./styles/quote";
+import wowStyling from "./styles/wow";
 
 declare global {
     interface Window {
@@ -44,6 +45,7 @@ export const StyledPostContent = styled.div`
         grid-template-columns: 1fr 1fr;
     `}
 
+    ${defaultBlockStyling}
     ${blockStyling}
     ${listStyling}
     ${imageStyling}

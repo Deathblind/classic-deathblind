@@ -5,3 +5,5 @@ export const quoteStyling = css`
         /* margin: 0; */
     }
 `;
+
+export default quoteStyling;

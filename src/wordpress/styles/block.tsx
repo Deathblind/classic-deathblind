@@ -1,5 +1,5 @@
-import { css } from "../../../theme/util/helpers";
-import { defaultMargin } from "../../../theme/theme/sizes";
+import { css } from "../../theme/util/helpers";
+import { defaultMargin } from "../../theme/theme/sizes";
 
 export const blockStyling = css`
     h1,
@@ -48,3 +48,5 @@ export const blockStyling = css`
         margin-bottom: ${defaultMargin};
     }
 `;
+
+export default blockStyling;

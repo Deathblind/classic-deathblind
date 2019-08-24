@@ -34,3 +34,5 @@ export const wowStyling = css`
         height: 1em;
     }
 `;
+
+export default wowStyling;

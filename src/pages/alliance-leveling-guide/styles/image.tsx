@@ -30,3 +30,5 @@ export const imageStyling = css`
         }
     `}
 `;
+
+export default imageStyling;

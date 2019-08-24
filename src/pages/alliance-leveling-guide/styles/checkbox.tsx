@@ -38,3 +38,5 @@ export const checkBoxStyling = css`
         opacity: 1;
     }
 `;
+
+export default checkBoxStyling;

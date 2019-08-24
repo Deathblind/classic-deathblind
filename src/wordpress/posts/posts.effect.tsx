@@ -9,7 +9,7 @@ import { Action } from "redux";
 import { loadPosts, loadPostsComplete } from "./posts.action";
 import { switchMap, map, filter, catchError } from "rxjs/operators";
 import { fetchPosts } from "./posts.http";
-import { sortPostsById } from "./posts.sort";
+import { sortPostsByIntended } from "./posts.sort";
 import { RootState } from "../../store/root";
 import { getPosts } from "./posts.selector";
 import { Post } from "./posts.interface";
@@ -24,7 +24,7 @@ const loadPostsEpic: Epic = (
         ofType(loadPosts),
         filter(() => !Boolean(getPosts(state$.value).data)),
         switchMap(() => (initialData ? [initialData] : fetchPosts())),
-        map(sortPostsById),
+        map(sortPostsByIntended),
         map(posts =>
             loadPostsComplete({
                 data: posts

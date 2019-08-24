@@ -75,3 +75,5 @@ export const listStyling = css`
         }
     }
 `;
+
+export default listStyling;
