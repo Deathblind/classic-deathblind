@@ -22,12 +22,12 @@ const idSortList = [
     1035, // 20-21 Redridge/Duskwood
     1039, // 21-22 Redridge
     1042, // 22-23 Wetlands
-    1740, // Blackfathom deeps (23-24)
     1045, // 23-26 Ashenvale
+    1740, // Blackfathom deeps (23-24)
     1050, // 26-27 Redridge
     1053, // 27-28 Duskwood
-    1789, // Stockade (28)
     1057, // 28-29 Duskwood
+    1789, // Stockade (28)
     1062, // 29-30 Wetlands
     1065, // 30-32 Hillsbrad
     1757, // Gnomeregan (30-31)
