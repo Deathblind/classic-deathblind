@@ -44,9 +44,9 @@ const idSortList = [
     1112, // 42-43 Stranglethorn Vale
     1118, // 43-44 Swamp of Sorrows
     1123, // 44-45 Tanaris
-    1767, // Zulfarak
     1130, // 45-46 Feralas
     1133, // 46-47 Tanaris
+    1767, // Zulfarak
     1135, // 47-48 Hinterlands
     1157, // 48-49 Stranglethorn Vale & Blasted Lands
     1160, // 49-50 Searing Gorge
