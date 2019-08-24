@@ -3,12 +3,10 @@ import Helmet from "react-helmet";
 import { connect } from "react-redux";
 import { match } from "react-router";
 import { Action, Dispatch } from "redux";
-import QuestAvailable from "../../icons/quest-available.png";
-import QuestComplete from "../../icons/quest-complete.png";
 import { RootState } from "../../store/root";
 import { desktop, hideOnMobile, tablet } from "../../theme/theme/responsive";
 import { bigMargin, bigPadding, defaultPadding } from "../../theme/theme/sizes";
-import { styled } from "../../theme/util/helpers";
+import { styled, css } from "../../theme/util/helpers";
 import Container from "../../ui/components/container/container";
 import Cta from "../../ui/components/cta/cta";
 import { decodeHTMLEntities } from "../../util/decode-html-entities";
@@ -25,6 +23,15 @@ import imageStyling from "./styles/image";
 import listStyling from "./styles/list";
 import quoteStyling from "./styles/quote";
 import wowStyling from "./styles/wow";
+import { compose } from "ramda";
+import { isOfTag, isIntroduction } from "../../wordpress/posts/posts.filter";
+import { Tags } from "../../wordpress/tags/tags.interface";
+import {
+    replaceQuestIcons,
+    lazyLoadImages,
+    createCheckboxes
+} from "./alliance-leveling-guide.transformer";
+// import AdSense from "react-adsense";
 
 declare global {
     interface Window {
@@ -36,22 +43,27 @@ declare global {
     }
 }
 
-export const StyledPostContent = styled.div`
-    display: grid;
-    grid-gap: ${defaultPadding};
+export const StyledPostContent = styled.div<{ isLeftRight: boolean }>`
     line-height: 1.5;
 
-    ${tablet`
-        grid-template-columns: 1fr 1fr;
-    `}
+    ${props =>
+        props.isLeftRight &&
+        css`
+            display: grid;
+            grid-gap: ${defaultPadding};
+            ${tablet`
+                grid-template-columns: 1fr 1fr;
+            `}
+        `}
 
     ${defaultBlockStyling}
-    ${blockStyling}
-    ${listStyling}
-    ${imageStyling}
-    ${quoteStyling}
-    ${checkBoxStyling}
     ${wowStyling}
+
+    ${props => props.isLeftRight && blockStyling}
+    ${props => props.isLeftRight && imageStyling}
+    ${props => props.isLeftRight && quoteStyling}
+    ${props => props.isLeftRight && listStyling}
+    ${props => props.isLeftRight && checkBoxStyling}
 `;
 
 export const StyledAllianceLevelingGuide = styled(Container)`
@@ -107,9 +119,49 @@ export const StyledNextPrevTitle = styled.strong`
 
 export const StyledPageHeader = styled.h1``;
 
-export interface AllianceLevelingGuideProps {
+export const StyledAd = styled.div``;
+
+export interface NavigationButtonsProps {
+    previousPostId: number | null;
+    previousPostTitle: string | null;
+    nextPostId: number | null;
+    nextPostTitle: string | null;
+}
+
+export const NavigationButtons: SFC<NavigationButtonsProps> = memo(
+    ({ previousPostId, previousPostTitle, nextPostId, nextPostTitle }) => (
+        <StyledNavigationButtonsWrapper>
+            <Cta
+                to={`/alliance-leveling-guide/${
+                    isIntroduction(previousPostId) ? "" : previousPostId
+                }`}
+                disabled={!previousPostId}
+            >
+                Previous{" "}
+                {previousPostTitle && (
+                    <StyledNextPrevTitle>
+                        ({previousPostTitle})
+                    </StyledNextPrevTitle>
+                )}
+            </Cta>
+
+            <Cta
+                to={`/alliance-leveling-guide/${nextPostId}`}
+                disabled={!nextPostId}
+            >
+                Next{" "}
+                {nextPostTitle && (
+                    <StyledNextPrevTitle>({nextPostTitle})</StyledNextPrevTitle>
+                )}
+            </Cta>
+        </StyledNavigationButtonsWrapper>
+    )
+);
+
+export interface AllianceLevelingGuideProps extends NavigationButtonsProps {
     loadData: () => void;
     content: string | null;
+    isLeftRight: boolean;
     title: string | null;
     excerpt: string | null;
     previousPostId: number | null;
@@ -121,6 +173,7 @@ export interface AllianceLevelingGuideProps {
 export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
     ({
         loadData,
+        isLeftRight,
         content,
         title,
         excerpt,
@@ -165,62 +218,49 @@ export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
                     </StyledTitle>
 
                     <StyledPost>
+                        {/* <StyledAd>
+                            <AdSense.Google
+                                client='pub-9237830006365098'
+                                slot='9086668325'
+                                style={{ display: 'block' }}
+                                responsive='true'
+                                layoutKey='-gw-1+2a-9x+5c'
+                                format='auto'
+                            />
+                        </StyledAd> */}
+
                         {content && (
-                            <StyledNavigationButtonsWrapper>
-                                <Cta
-                                    to={`/alliance-leveling-guide/${previousPostId}`}
-                                    disabled={!previousPostId}
-                                >
-                                    Previous{" "}
-                                    {previousPostTitle && (
-                                        <StyledNextPrevTitle>
-                                            ({previousPostTitle})
-                                        </StyledNextPrevTitle>
-                                    )}
-                                </Cta>
-                                <Cta
-                                    to={`/alliance-leveling-guide/${nextPostId}`}
-                                    disabled={!nextPostId}
-                                >
-                                    Next{" "}
-                                    {nextPostTitle && (
-                                        <StyledNextPrevTitle>
-                                            ({nextPostTitle})
-                                        </StyledNextPrevTitle>
-                                    )}
-                                </Cta>
-                            </StyledNavigationButtonsWrapper>
+                            <NavigationButtons
+                                previousPostId={previousPostId}
+                                previousPostTitle={previousPostTitle}
+                                nextPostId={nextPostId}
+                                nextPostTitle={nextPostTitle}
+                            />
                         )}
 
                         <StyledPostContent
+                            isLeftRight={isLeftRight}
                             dangerouslySetInnerHTML={{ __html: content! }}
                         ></StyledPostContent>
 
+                        {/* <StyledAd>
+                            <AdSense.Google
+                                client='pub-9237830006365098'
+                                slot='2448860368'
+                                style={{ display: 'block' }}
+                                responsive='true'
+                                layoutKey='-gw-1+2a-9x+5c'
+                                format='auto'
+                            />
+                        </StyledAd> */}
+
                         {content && (
-                            <StyledNavigationButtonsWrapper>
-                                <Cta
-                                    to={`/alliance-leveling-guide/${previousPostId}`}
-                                    disabled={!previousPostId}
-                                >
-                                    Previous{" "}
-                                    {previousPostTitle && (
-                                        <StyledNextPrevTitle>
-                                            ({previousPostTitle})
-                                        </StyledNextPrevTitle>
-                                    )}
-                                </Cta>
-                                <Cta
-                                    to={`/alliance-leveling-guide/${nextPostId}`}
-                                    disabled={!nextPostId}
-                                >
-                                    Next{" "}
-                                    {nextPostTitle && (
-                                        <StyledNextPrevTitle>
-                                            ({nextPostTitle})
-                                        </StyledNextPrevTitle>
-                                    )}
-                                </Cta>
-                            </StyledNavigationButtonsWrapper>
+                            <NavigationButtons
+                                previousPostId={previousPostId}
+                                previousPostTitle={previousPostTitle}
+                                nextPostId={nextPostId}
+                                nextPostTitle={nextPostTitle}
+                            />
                         )}
                     </StyledPost>
                 </StyledAllianceLevelingGuide>
@@ -260,7 +300,8 @@ const mapStateToProps = (
     const posts = getPostsAsIds(state);
     const postID = +postId || posts[0];
     const post = getPostById(postID)(state);
-    let index = 1;
+
+    const isPostLeftRight = isOfTag(Tags.LeftImageRightContent)(post);
 
     const [previousPostId, nextPostId] = getPrevNextPostIds(postID, posts);
     const previousPost = getPostById(previousPostId!)(state);
@@ -273,33 +314,17 @@ const mapStateToProps = (
         ? decodeHTMLEntities(nextPost.title.rendered)
         : null;
 
+    const contentTransform = compose(
+        isPostLeftRight
+            ? createCheckboxes(index => `${postID}:${index}`)
+            : content => content,
+        lazyLoadImages,
+        replaceQuestIcons
+    );
+
     return {
-        content: post
-            ? post.content.rendered
-                  .replace(new RegExp("<li>", "g"), function() {
-                      return `<li>
-                          <label>
-                              <input type='checkbox' data-id="${postID}:${index++}" />
-                              <div></div>
-                          </label>
-                          <div>
-                      `;
-                  })
-                  .replace(new RegExp("</li>", "g"), `</div></li>`)
-                  .replace(
-                      /!\?</g,
-                      `<img class="quest-icon" src="${QuestAvailable}" /><img class="quest-icon" src="${QuestComplete}" /><`
-                  )
-                  .replace(
-                      /!</g,
-                      `<img class="quest-icon" src="${QuestAvailable}" /><`
-                  )
-                  .replace(
-                      /\?</g,
-                      `<img class="quest-icon" src="${QuestComplete}" /><`
-                  )
-                  .replace(new RegExp("<img", "g"), `<img loading="lazy"`)
-            : null,
+        isLeftRight: isPostLeftRight,
+        content: post ? contentTransform(post.content.rendered) : null,
         title: post ? post.title.rendered : null,
         excerpt: post ? post.excerpt.rendered : null,
         previousPostId,

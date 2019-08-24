@@ -1,6 +1,9 @@
 import { createGlobalStyle } from "../theme/util/helpers";
 import { bodyLineHeight, bodyFontSize } from "../theme/theme/font-sizes";
-import { primaryForeground } from "../theme/theme/colors";
+import {
+    primaryForeground,
+    primaryAccentBackground
+} from "../theme/theme/colors";
 import { bodyFont } from "../theme/theme/font-families";
 import { h1, h2, h3, h4, h5, h6 } from "../ui/util/heading/heading";
 
@@ -53,6 +56,10 @@ export const Typography = createGlobalStyle`
 
     b, strong {
         font-weight: 600;
+    }
+
+    a {
+        color: ${primaryAccentBackground};
     }
 `;
 

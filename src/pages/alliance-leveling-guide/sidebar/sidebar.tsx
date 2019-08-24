@@ -15,6 +15,7 @@ import {
 } from "../../../theme/theme/colors";
 import { NavLink } from "react-router-dom";
 import { decodeHTMLEntities } from "../../../util/decode-html-entities";
+import { isIntroduction } from "../../../wordpress/posts/posts.filter";
 
 export const StyledSidebar = styled.aside`
     padding: ${defaultPadding};
@@ -49,7 +50,10 @@ export const Sidebar: SFC<SidebarProps> = memo(({ items }) => {
             {items.map(({ postId, title }) => (
                 <StyledLink
                     key={postId}
-                    to={`/alliance-leveling-guide/${postId}`}
+                    to={`/alliance-leveling-guide/${
+                        isIntroduction(postId) ? "" : postId
+                    }`}
+                    exact
                 >
                     {title}
                 </StyledLink>

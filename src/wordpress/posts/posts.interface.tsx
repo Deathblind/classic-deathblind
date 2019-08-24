@@ -1,5 +1,7 @@
-import {SelfItem, CollectionItem} from "../wordpress.interface";
-import {Author} from "../authors/authors.interface";
+import { SelfItem, CollectionItem } from "../wordpress.interface";
+import { Author } from "../authors/authors.interface";
+import { Tags } from "../tags/tags.interface";
+import { Categories } from "../categories/categories.interface";
 
 export interface Post {
     id: number;
@@ -23,8 +25,8 @@ export interface Post {
     template: string;
     format: string;
     meta: any[];
-    categories: number[];
-    tags: number[];
+    categories: Categories[];
+    tags: Tags[];
     _links: PostLinks;
     _embedded: Embedded;
 }
