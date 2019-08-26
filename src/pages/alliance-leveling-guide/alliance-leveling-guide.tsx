@@ -31,7 +31,7 @@ import {
     lazyLoadImages,
     createCheckboxes
 } from "./alliance-leveling-guide.transformer";
-// import AdSense from "react-adsense";
+import AdSense from "react-adsense";
 
 declare global {
     interface Window {
@@ -218,7 +218,7 @@ export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
                     </StyledTitle>
 
                     <StyledPost>
-                        {/* <StyledAd>
+                        <StyledAd>
                             <AdSense.Google
                                 client='pub-9237830006365098'
                                 slot='9086668325'
@@ -227,7 +227,7 @@ export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
                                 layoutKey='-gw-1+2a-9x+5c'
                                 format='auto'
                             />
-                        </StyledAd> */}
+                        </StyledAd>
 
                         {content && (
                             <NavigationButtons
@@ -243,7 +243,7 @@ export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
                             dangerouslySetInnerHTML={{ __html: content! }}
                         ></StyledPostContent>
 
-                        {/* <StyledAd>
+                        <StyledAd>
                             <AdSense.Google
                                 client='pub-9237830006365098'
                                 slot='2448860368'
@@ -252,7 +252,7 @@ export const AllianceLevelingGuide: SFC<AllianceLevelingGuideProps> = memo(
                                 layoutKey='-gw-1+2a-9x+5c'
                                 format='auto'
                             />
-                        </StyledAd> */}
+                        </StyledAd>
 
                         {content && (
                             <NavigationButtons
