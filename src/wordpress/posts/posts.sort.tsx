@@ -43,13 +43,13 @@ const idSortList = [
     1130, // 45-46 Feralas
     1133, // 46-47 Tanaris
     1135, // 47-48 Hinterlands
+    1195, // 48-49 Feralas
     1157, // 48-49 Stranglethorn Vale & Blasted Lands
     1160, // 49-50 Searing Gorge
     1168, // 50-51 Felwood
     1170, // 51-52 Azshara
     1191, // 52-53 Un’Goro
     1193, // 53-54 Felwood
-    1195, // 54-55 Feralas
     1228, // 55-56 Burning Steppes
     1231, // 56-57 Western Plaguelands
     1233, // 57-58 Eastern Plaguelands
