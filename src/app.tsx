@@ -49,14 +49,6 @@ export const App: SFC<RouteComponentProps> = memo(
                         
                         <Route
                             exact
-                            path="/"
-                            render={() => (
-                                <Redirect to="/alliance-leveling-guide" />
-                            )}
-                        />
-                        
-                        <Route
-                            exact
                             path="/post/719"
                             render={() => (
                                 <Redirect to="/alliance-leveling-guide" />
