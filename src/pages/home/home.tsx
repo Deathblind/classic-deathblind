@@ -11,7 +11,6 @@ import { loadAuthors } from "../../wordpress/authors/authors.action";
 import { Dispatch, Action } from "redux";
 import { getVideos } from "../../youtube/youtube.selector";
 import Helmet from "react-helmet";
-import AdSense from "react-adsense";
 
 const StyledVideoContainer = styled(Container)`
     max-width: 50vw;
@@ -48,15 +47,6 @@ export const Home: SFC<HomeProps> = memo(({ loadData }) => {
                     ></StyledIframe>
                 </Ratio>
             </StyledVideoContainer>
-
-            <AdSense.Google
-                client="pub-9237830006365098"
-                slot="9086668325"
-                style={{ display: "block" }}
-                responsive="true"
-                layoutKey="-gw-1+2a-9x+5c"
-                format="auto"
-            />
         </>
     );
 });
