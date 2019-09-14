@@ -10,8 +10,8 @@ export const sortPostsByDate = sortWith<Post>([
 export const sortPostsById = sortWith<Post>([ascend(({ id }) => id)]);
 
 const idSortList = [
-    2163, // AddOns
     1865, // introduction
+    2163, // AddOns
     1866, // Wands at launch
     2020, // Priest Leveling Talents and Rotation
     991, // 1-6 Coldridge Valley
