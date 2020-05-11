@@ -77,7 +77,7 @@ Item.defaultProps = {
 
 export const Navigation: SFC = memo(props => (
     <StyledNavigation>
-        <HomeItem to="/" exact>
+        <HomeItem to="https://deathblind.com" exact>
             <Image src={Logo} alt="Logo" title="Deathblind Logo" />
             Home
         </HomeItem>
