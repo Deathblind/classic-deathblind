@@ -52,6 +52,9 @@ export const HomeItem = styled.a`
     grid-template-columns: 46px max-content;
     grid-column-gap: ${tinyPadding};
     align-items: center;
+    color: ${primarySaturatedForeground};
+    text-decoration: none;
+    font-weight: 500;
 `;
 
 export const MerchItem = styled.a`
