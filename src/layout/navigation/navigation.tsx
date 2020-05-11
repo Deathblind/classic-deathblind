@@ -47,7 +47,7 @@ export const Item = styled(NavLink)`
     }
 `;
 
-export const HomeItem = styled(Item)`
+export const HomeItem = styled.a`
     display: grid;
     grid-template-columns: 46px max-content;
     grid-column-gap: ${tinyPadding};
@@ -77,7 +77,7 @@ Item.defaultProps = {
 
 export const Navigation: SFC = memo(props => (
     <StyledNavigation>
-        <HomeItem to="https://deathblind.com" exact>
+        <HomeItem href="https://deathblind.com" exact>
             <Image src={Logo} alt="Logo" title="Deathblind Logo" />
             Home
         </HomeItem>
