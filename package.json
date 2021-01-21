@@ -7,7 +7,7 @@
     "@redux-beacon/google-analytics": "^1.2.2",
     "axios": "^0.21.1",
     "date-fns": "^2.0.0-alpha.34",
-    "immer": "^1.8.0",
+    "immer": "^8.0.1",
     "logrocket": "^1.0.3",
     "logrocket-react": "^3.0.1",
     "normalizr": "^3.3.0",
