@@ -98,7 +98,7 @@
     "ignore-styles": "^5.0.1",
     "jest-enzyme": "^7.0.1",
     "jest-styled-components": "^6.3.3",
-    "lint-staged": "^8.2.1",
+    "lint-staged": "^13.1.0",
     "md5-file": "^4.0.0",
     "mvy": "^0.1.0",
     "on-finished": "^2.3.0",
